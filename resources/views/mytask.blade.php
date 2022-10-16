@@ -29,13 +29,13 @@
                 <h1>My tasks {{count($tasks)}}/20</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-6 taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-5 taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>
             @if(count($tasks) == 20)
             <div class="form-group mt-50">
-                <a href="{{route('gameplay')}}" class="btn btn-primary">Ready to start</a>
+                <a href="{{route('gameplay')}}" class="btn btn-primary">Enter the Race</a>
             </div>
             @endif
         </div>

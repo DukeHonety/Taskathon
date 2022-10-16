@@ -109,14 +109,40 @@ class HomeController extends Controller
 		{
 			$user = Auth::user();
 			$mytask = Task::select('*')->where('user_id', $user->id)->get()->toArray();
-
-			$gameInfo = array(
+            $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
+            $players = Player::all()->toArray();
+			$gameInfo = array(                
+				'race_time' => date('Y-m-d H:i:s'),
 				'tasks' => $mytask,
-				'players' => 14,
+				'tplayers' => 14,
 				'leader' => 'Dragon',
 				'finished' => 10,
-				'race_time' => date('Y-m-d H:i:s')
+                'completed' => $completetask,
+                'players' => $players
 			);
 			return view('gameplay', compact('gameInfo'));
+		}
+
+		/** 
+		 * Update status of my task
+		 */
+		public function updatetask(Request $request)
+		{
+			$user = Auth::user();
+			$taskId = $request->taskId;
+            $status = $request->status;
+            $tmodel = Task::find($taskId);
+            if(!$tmodel)
+                return false;
+            $tmodel->status = $status;
+            $tmodel->save();
+
+            $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
+            $pmodel = Player::where('user_id', $user->id)->get();
+            if (count($pmodel) > 0)
+                $pmodel = $pmodel[0];
+            $pmodel->complete = $completetask;
+            $pmodel->save();
+			return $taskId;
 		}
 }
