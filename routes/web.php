@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,4 +26,9 @@ Route::get('/', function () {
 // });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [ App\Http\Controllers\HomeController::class, 'index' ])->name('home');
+Route::post('/gomytask', [ App\Http\Controllers\HomeController::class, 'gomytask' ])->name('gomytask');
+Route::get('/mytask', [ App\Http\Controllers\HomeController::class, 'mytask' ])->name('mytask');
+Route::post('/mytask', [ App\Http\Controllers\HomeController::class, 'mytask' ])->name('mytask');
+
+Route::get('/gameplay', [ App\Http\Controllers\HomeController::class, 'gameplay' ])->name('gameplay');

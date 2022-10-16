@@ -1,0 +1,40 @@
+.mt-50{
+    margin-top: 50px;
+}
+.avatarSlideItem{
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+.avatarSlideItem.active{
+    border:1px solid blue;
+}
+.avatarSlideItem:hover{
+    border: 1px solid grey;
+}
+.avatarSlider{
+    display:flex;
+    overflow:auto;
+}
+
+.font-bold{
+    font-weight: 700;
+}
+#task_tab{
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+.taskItem{
+    padding: 5px 10px;
+    margin: 5px;
+    border:1px solid black;
+    width: 200px;
+    height: 45px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.taskItem:hover{
+    border:1px solid blue; 
+}
