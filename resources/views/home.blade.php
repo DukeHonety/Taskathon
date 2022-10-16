@@ -9,7 +9,8 @@ $avatars = array("1","2","3","4","5","6","7","8")
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
-            <h3>Race starts in {{$gameInfo['race_time']}}</h3>
+            <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
+            <h3>Race starts in <span id="countTime"></span></h3>
             <form class="hometab" method="POST" action="{{ route('gomytask') }}">
                 {{ csrf_field() }}
                 <div class="form-group mt-50">

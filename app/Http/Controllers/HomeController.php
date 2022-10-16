@@ -25,8 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Asia/Kolkata');
         $gameInfo = [
-            'race_time' => date('Y-m-d H:i:s'),
+            'race_time' => date('2022-10-18 0:0:0'),
         ];
         return view('home', compact('gameInfo'));
     }

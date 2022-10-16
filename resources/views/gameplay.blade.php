@@ -14,7 +14,8 @@
         </div>
         <div class="col-md-8 text-center">
             <div class="form-group mt-50">
-                <h1>Time remaining: {{$gameInfo['race_time']}} </h1>
+                <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
+                <h3>Time remaining: <span id="countTime"></span></h3>
                 <div class="gameprogress">
                     @foreach($players as $player)
                         <div class="playerprogress">

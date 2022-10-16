@@ -8,7 +8,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
-            <h3>Race starts in {{$gameInfo['race_time']}}</h3>
+            <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
+            <h3>Race starts in <span id="countTime"></span></h3>
             <input type="hidden" id="taskcount" value="{{count($tasks)}}"/>
             <div class="form-group mt-50 flex justify-center flex-col">
                 <h1>Welcome, <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
