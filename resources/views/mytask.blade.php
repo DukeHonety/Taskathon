@@ -27,9 +27,9 @@
             </form>
             <div class="form-group mt-50">
                 <h1>My tasks {{count($tasks)}}/20</h1>
-                <div id="task_tab">
+                <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-6 taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>

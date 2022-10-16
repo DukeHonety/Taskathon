@@ -20,21 +20,27 @@
 .font-bold{
     font-weight: 700;
 }
-#task_tab{
+.task_tab{
     font-size: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 .taskItem{
-    padding: 5px 10px;
-    margin: 5px;
     border:1px solid black;
-    width: 200px;
+    margin: 5px;
     height: 45px;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 .taskItem:hover{
     border:1px solid blue; 
+}
+
+.infoTab{
+    display: flex;
+    justify-content: space-around;
+    font-size: 16px;
 }

@@ -5,7 +5,7 @@ $tasks = $gameInfo['tasks']; ?>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="flex">
+        <div class="infoTab">
             <div>Total Players : {{$gameInfo['players']}}</div>
             <div>Current Leader : {{$gameInfo['leader']}}</div>
             <div>Finished Players : {{$gameInfo['finished']}}</div>
@@ -23,11 +23,11 @@ $tasks = $gameInfo['tasks']; ?>
                     </div>
                 </div>
             </form>
-            <div class="form-group">
+            <div class="form-group mt-50">
                 <h1>My tasks {{count($tasks)}}/20</h1>
-                <div id="task_tab">
+                <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-5 taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>
