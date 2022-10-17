@@ -17,7 +17,13 @@
             </div>
             <form class="mt-50" method="POST" >
                 {{ csrf_field() }}
-                <h1>Enter 20 tasks to complete</h1>
+                @if(count($tasks) == 20)
+                <div class="form-group my-50">
+                    <a href="{{route('home')}}" class="btn btn-primary">Enter the Race</a>
+                </div>
+                @else
+                    <h1>Enter 20 tasks to complete</h1>
+                @endif
                 <div class="input-group mb-3">
                     <input type="hidden" class="form-control" name="taskId" id="taskId" value=""/>
                     <input type="text" class="form-control" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -30,15 +36,11 @@
                 <h1>My tasks {{count($tasks)}}/20</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 taskItem" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-5 taskItem btn btn-light {{$task['status'] == 1 ? 'active' : ''}}" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>
-            @if(count($tasks) == 20)
-            <div class="form-group mt-50">
-                <a href="{{route('home')}}" class="btn btn-primary">Enter the Race</a>
-            </div>
-            @endif
+            
         </div>
     </div>
 </div>

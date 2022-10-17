@@ -1,9 +1,13 @@
 .mt-50{
     margin-top: 50px;
 }
+.my-50{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 .avatarSlideItem{
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    max-width: 100%;
     cursor: pointer;
 }
 .avatarSlideItem.active{
@@ -53,25 +57,34 @@ button.slide-right{
     justify-content: space-around;
 }
 .taskItem{
-    border:1px solid black;
-    margin: 5px;
     height: 45px;
     overflow: hidden;
-    cursor: pointer;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid rgba(242, 168, 153, 0.6);
 }
-.taskItem.active{
-    background-color: greenyellow;
+.taskItem *{
+    cursor: pointer;
 }
-.taskItem:hover{
-    border:1px solid blue; 
+.taskItem label{
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
+    color:rgba(115, 32, 79, 1);
+    text-transform: capitalize;
+}
+.taskItem input{
+    box-shadow: none;
+    background: #fff;
+    margin-right: 10px;
+    border: 2px solid #f2a899;
+    font: 1.6rem "Caladea", serif;
+    border-radius: 10px;
+    outline-color: rgba(115, 32, 79, 0.4);
 }
 
-.taskItem button{
-    border: 0px;
-    background-color: transparent;
+.taskItem.active label{
+    text-decoration: line-through;
 }
 
 .infoTab{

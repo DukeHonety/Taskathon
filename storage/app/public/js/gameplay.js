@@ -1,26 +1,10 @@
 let raceTimer;
 $(document).ready(function(){
-    $(".taskItem button").click(function(){
-        const taskItem = $(this).parent();
+    $(".taskItem").click(function(){
+        const taskItem = $(this);
         const tastId = taskItem.attr("taskid");
         let completedTask = parseInt($("span#completed").html());
-        let status = 0;
-        if (taskItem.hasClass('active')) {
-            if (!confirm('Would you remove completion of this task?'))
-                return;
-            taskItem.removeClass('active');
-            $(this).html('<i class="fa fa-check"></i>');
-            status = 0;
-            completedTask--;
-        }
-        else {
-            if (!confirm('Would you like to complete this task?'))
-                return;
-            taskItem.addClass('active');
-            $(this).html('<i class="fa fa-times"></i>');
-            status = 1;
-            completedTask++;
-        }
+        let status = $(this).hasClass('active') ? 0 : 1;
         const ajax_data = {
             _token: $('input[name="_token"]').val(),
             taskId: tastId,

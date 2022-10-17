@@ -17,40 +17,37 @@
                 <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
                 <h3>Time remaining: <span id="countTime"></span></h3>
             </div>
+            
             <div class="card mt-50">
-                {{ csrf_field() }}
                 <div class="card-header">
-                    <h1><span id="completed">{{$gameInfo['completed']}}</span> task(s) are completed on {{count($tasks)}} tasks</h1>
-                    <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button>
+                    <h1>Game status</h1>
+                    <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
-                <div class="card-body task_tab container row">
-                    @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 taskItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
-                            <label>{{$task['title']}}</label>
-                            @if ($task['status'] == 0)
-                                <button><i class="fa fa-check"></i></button>
-                            @else
-                                <button><i class="fa fa-times"></i></button>
-                            @endif
+                <div class="card-body gameprogress">
+                    @foreach($players as $player)
+                        <div class="playerprogress">
+                            <div class="info" style="margin-left:calc(<?php echo $player['complete']*5; ?>% - 50px);">
+                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}"/>
+                                <span>{{$player['name']}}</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player['complete']*5;?>%" aria-valuenow="{{$player['complete']*5}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
             </div>
             <div class="card mt-50">
+                {{ csrf_field() }}
                 <div class="card-header">
-                    <h1>Game status</h1>
-                    <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button>
+                    <h1><span id="completed">{{$gameInfo['completed']}}</span> task(s) are completed on {{count($tasks)}} tasks</h1>
+                    <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
-                <div class="card-body gameprogress">
-                    @foreach($players as $player)
-                        <div class="playerprogress">
-                            <div class="info" style="margin-left:calc({{$player['complete']*5}}% - 50px);">
-                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}"/>
-                                <span>{{$player['name']}}</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{$player['complete']*5}}%" aria-valuenow="{{$player['complete']*5}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                <div class="card-body task_tab container row" style="background: lavenderblush;">
+                    @foreach ($tasks as $key => $task)
+                        <div class="col-md-5 taskItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
+                            <input id="checkbox-{{$task['id']}}" type="checkbox" <?php echo $task['status'] == 1 ? 'checked ' : ''?>>
+                            <label for="checkbox-{{$task['id']}}">{{$task['title']}}<span class="box"></span></label>
                         </div>
                     @endforeach
                 </div>

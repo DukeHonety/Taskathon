@@ -14,24 +14,24 @@ $(document).ready(function(){
     })
     $("button#submit").click(function(){
         const playerAvatar = $("input#playeravatar").val();
-        if (playerAvatar === '' ){
+        if (playerAvatar === '' || playerAvatar === '0' ){
             alert("Select one Avatar");
             return false;
         }
         return true;
     });
-    $("button.slide-left").click(function(){
-        const total = parseInt($(".avatarContent").attr("total"));
-        sliderPos++;
-        if (total == sliderPos)
-            sliderPos = 0;
-        $('.avatarContent').css('margin-left', '-' + sliderPos*120 + 'px');
-    });
-    $("button.slide-right").click(function(){
-        const total = parseInt($(".avatarContent").attr("total"));
-        sliderPos--;
-        if (sliderPos < 0)
-            sliderPos = total-1;
-        $('.avatarContent').css('margin-left', '-' + sliderPos*120 + 'px');
-    });
+    // $("button.slide-left").click(function(){
+    //     const total = parseInt($(".avatarContent").attr("total"));
+    //     sliderPos++;
+    //     if (total == sliderPos)
+    //         sliderPos = 0;
+    //     $('.avatarContent').css('margin-left', '-' + sliderPos*120 + 'px');
+    // });
+    // $("button.slide-right").click(function(){
+    //     const total = parseInt($(".avatarContent").attr("total"));
+    //     sliderPos--;
+    //     if (sliderPos < 0)
+    //         sliderPos = total-1;
+    //     $('.avatarContent').css('margin-left', '-' + sliderPos*120 + 'px');
+    // });
 });

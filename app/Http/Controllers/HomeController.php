@@ -66,7 +66,7 @@ class HomeController extends Controller
             'playerName'=> $pName,
             'playerAvatar'=> $pAvatar,
             'race_time' => date('2022-10-18 0:0:0'),
-            'avatars' => Avatar::all()->toArray()
+            'avatars' => Avatar::where('used', 0)->get()->toArray()
         ];
         return view('plangame', compact('gameInfo'));
     }
@@ -85,6 +85,12 @@ class HomeController extends Controller
         if (count($exist) > 0) {
             // return redirect()->back();
             $model = $exist[0];
+            $amodel = Avatar::find($model->character);
+            if ($amodel){
+                $amodel->used = 0;
+                $amodel->save();
+            }
+
         } else {
             $model = new Player();
             $model->user_id = $user->id;
@@ -92,6 +98,11 @@ class HomeController extends Controller
         $model->name = $playerName;
         $model->character = $avatarId;
         if ($model->save()) {
+            $amodel = Avatar::find($avatarId);
+            if ($amodel){
+                $amodel->used = 1;
+                $amodel->save();
+            }
             return redirect()->route('mytask');
         } else {
             return redirect()->back();

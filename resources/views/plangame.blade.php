@@ -19,27 +19,19 @@ $avatars = $gameInfo['avatars'];
                         <input type="text" class="form-control" name="playername" id="playername" placeholder="Input your player name" value="{{$gameInfo['playerName']}}" required autocomplete=off @error('playername') is-invalid @enderror/>
                     </div>
                 </div>
-                <div class="form-group mt-50">
-                    <h1>Select your avatar</h1>
-                    <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror value="{{$gameInfo['playerAvatar']}}"/>
-                    
+                <div class="form-group mt-50 relative">
                     <div style="position:relative">
-                        <div class="avatarSlider">
-                            <div class="avatarContent" total="{{count($avatars)}}" style="margin-left:-{{($gameInfo['playerAvatar']-1)*120}}px">
-                            @foreach ($avatars as $avatar)
-                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="{{$avatar['id']}}"/>
-                            @endforeach
-                            @foreach ($avatars as $avatar)
-                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="{{$avatar['id']}}"/>
-                            @endforeach
-                            </div>
-                        </div>
-                        <button class="btn btn-outline-primary slide-left" type="button"><i class="fas fa-chevron-left"></i></button>
-                        <button class="btn btn-outline-primary slide-right" type="button"><i class="fas fa-chevron-right"></i></button>
+                        <h1>Select your avatar</h1>
+                        <button type="submit" id="submit" class="btn btn-primary" style="position:absolute; right:0px; top:0px">Next</button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" id="submit" class="btn btn-primary">Next</button>                   
+                    <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror value="{{$gameInfo['playerAvatar']}}"/>                    
+                    <div class="row">
+                        @foreach ($avatars as $avatar)
+                        <div class="col-sm-3">
+                            <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="{{$avatar['id']}}"/>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </form>
         </div>
@@ -49,7 +41,7 @@ $avatars = $gameInfo['avatars'];
 
 @section('script')
     <script>
-        let sliderPos = {{$gameInfo['playerAvatar']}} - 1;
+        let sliderPos = <?php echo $gameInfo['playerAvatar'];?> - 1;
     </script>
     <script src="{{asset('storage/js/plangame.js')}}" ></script>
 @endsection
