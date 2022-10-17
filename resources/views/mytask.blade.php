@@ -36,7 +36,7 @@
                 <h1>My tasks {{count($tasks)}}/20</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 taskItem btn btn-light {{$task['status'] == 1 ? 'active' : ''}}" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-5 taskItem btn btn-light" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>
