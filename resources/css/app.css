@@ -13,9 +13,35 @@
     border: 1px solid grey;
 }
 .avatarSlider{
-    display:flex;
-    overflow:auto;
+    height:120px;
+    margin:20px;
+    position: relative;
+    overflow:hidden;
 }
+button.slide-left{
+    position: absolute;
+    height: 120px;
+    left: 0px;
+    top:0px;
+    border:0px;
+}
+button.slide-right{
+    position: absolute;
+    height: 120px;
+    right: -20px;
+    top:0px;
+    border:0px;
+}
+
+.avatarContent{
+    display: flex;
+    position: relative;
+    left:20px;
+}
+.avatarContent img{
+    padding:5px;
+}
+
 
 .font-bold{
     font-weight: 700;

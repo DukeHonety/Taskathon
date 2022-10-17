@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Avatar;
 use App\Models\Player;
 use App\Models\Task;
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
         date_default_timezone_set('Asia/Kolkata');
         $gameInfo = [
             'race_time' => date('2022-10-18 0:0:0'),
+            'avatars' => Avatar::all()->toArray()
         ];
         return view('home', compact('gameInfo'));
     }

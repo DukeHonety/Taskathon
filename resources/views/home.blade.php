@@ -1,7 +1,7 @@
 <?php 
 use Illuminate\Support\Facades\Storage;
 
-$avatars = array("1","2","3","4","5","6","7","8")
+$avatars = $gameInfo['avatars'];
 ?>
 @extends('layouts.app')
 
@@ -22,10 +22,20 @@ $avatars = array("1","2","3","4","5","6","7","8")
                 <div class="form-group mt-50">
                     <h1>Select your avatar</h1>
                     <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror/>
-                    <div class="avatarSlider">
-                        @foreach ($avatars as $avatar)
-                            <img src="{{asset('storage/avatars/'.$avatar.'.png')}}" class="avatarSlideItem" id="{{$avatar}}"/>
-                        @endforeach
+                    
+                    <div style="position:relative">
+                        <div class="avatarSlider">
+                            <div class="avatarContent" total="{{count($avatars)}}">
+                            @foreach ($avatars as $avatar)
+                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem" id="{{$avatar['id']}}"/>
+                            @endforeach
+                            @foreach ($avatars as $avatar)
+                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem" id="{{$avatar['id']}}"/>
+                            @endforeach
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary slide-left" type="button"><i class="fas fa-chevron-left"></i></button>
+                        <button class="btn btn-outline-primary slide-right" type="button"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
                 <div class="form-group">
