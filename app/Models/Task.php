@@ -10,5 +10,5 @@ class Task extends Model
     use HasFactory;
     protected $table = 'tasks';
     // public $timestamps = false;
-    const UPDATED_AT = null;
+    // const UPDATED_AT = null;
 }

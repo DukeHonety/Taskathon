@@ -20,18 +20,55 @@ class HomeController extends Controller
     }
 
     /**
+     * Show game play page
+     */
+    public function gameplay()
+    {
+        $user = Auth::user();
+        //test current player is ready for race
+        $allowMe = Player::where('user_id', $user->id)->get()->toArray();
+        if(count($allowMe) == 0)
+            return redirect()->route('plangame');
+        if($allowMe[0]['tasks'] != '20')
+            return redirect()->route('mytask');
+        //
+        $mytask = Task::select('*')->where('user_id', $user->id)->get()->toArray();
+        $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
+        $players = Player::where('tasks', '20')->with('avatar')->get()->toArray();
+        $gameInfo = array(                
+            'race_time' => date('Y-m-d H:i:s'),
+            'tasks' => $mytask,
+            'leader' => '',
+            'finished' => Player::where('complete', 20)->count(),
+            'completed' => $completetask,
+            'players' => $players
+        );
+        return view('gameplay', compact('gameInfo'));
+    }
+    
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function plangame()
     {
         date_default_timezone_set('Asia/Kolkata');
+        $user = Auth::user();
+        $pInfo = Player::where('user_id', $user->id)->get();
+        $pName = '';
+        $pAvatar = 0;
+        if (count($pInfo) > 0){
+            $pName = $pInfo[0]->name;
+            $pAvatar = $pInfo[0]->character;
+        }
         $gameInfo = [
+            'playerName'=> $pName,
+            'playerAvatar'=> $pAvatar,
             'race_time' => date('2022-10-18 0:0:0'),
             'avatars' => Avatar::all()->toArray()
         ];
-        return view('home', compact('gameInfo'));
+        return view('plangame', compact('gameInfo'));
     }
 
     /**
@@ -89,7 +126,7 @@ class HomeController extends Controller
         }
         $mtask = Player::where('user_id', $user->id)->get();
         if(count($mtask) == 0)
-            return redirect()->route('home');
+            return redirect()->route('plangame');
         $mtask = $mtask[0];
         $mtask->tasks = Task::where('user_id', $user->id)->count();
         $mtask->save();
@@ -102,7 +139,7 @@ class HomeController extends Controller
             ->with('avatar')
             ->get()->toArray();
         if (count($player) === 0) {
-            return redirect()->route('home');
+            return redirect()->route('plangame');
         }
         $player = $player[0];
         $gameInfo = [
@@ -113,53 +150,26 @@ class HomeController extends Controller
         return view('mytask', compact('gameInfo'));
     }
 
-		/**
-		 * Show game play page
-		 */
-		public function gameplay()
-		{
-			$user = Auth::user();
-            //test current player is ready for race
-            $allowMe = Player::where('user_id', $user->id)->get()->toArray();
-            if(count($allowMe) == 0)
-                return redirect()->route('home');
-            if($allowMe[0]['tasks'] != '20')
-                return redirect()->route('mytask');
-            //
-			$mytask = Task::select('*')->where('user_id', $user->id)->get()->toArray();
-            $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
-            $players = Player::where('tasks', '20')->with('avatar')->get()->toArray();
-			$gameInfo = array(                
-				'race_time' => date('Y-m-d H:i:s'),
-				'tasks' => $mytask,
-				'leader' => '',
-				'finished' => Player::where('complete', 20)->count(),
-                'completed' => $completetask,
-                'players' => $players
-			);
-			return view('gameplay', compact('gameInfo'));
-		}
+    /** 
+     * Update status of my task
+     */
+    public function updatetask(Request $request)
+    {
+        $user = Auth::user();
+        $taskId = $request->taskId;
+        $status = $request->status;
+        $tmodel = Task::find($taskId);
+        if(!$tmodel)
+            return false;
+        $tmodel->status = $status;
+        $tmodel->save();
 
-		/** 
-		 * Update status of my task
-		 */
-		public function updatetask(Request $request)
-		{
-			$user = Auth::user();
-			$taskId = $request->taskId;
-            $status = $request->status;
-            $tmodel = Task::find($taskId);
-            if(!$tmodel)
-                return false;
-            $tmodel->status = $status;
-            $tmodel->save();
-
-            $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
-            $pmodel = Player::where('user_id', $user->id)->get();
-            if (count($pmodel) > 0)
-                $pmodel = $pmodel[0];
-            $pmodel->complete = $completetask;
-            $pmodel->save();
-			return $taskId;
-		}
+        $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
+        $pmodel = Player::where('user_id', $user->id)->get();
+        if (count($pmodel) > 0)
+            $pmodel = $pmodel[0];
+        $pmodel->complete = $completetask;
+        $pmodel->save();
+        return $taskId;
+    }
 }

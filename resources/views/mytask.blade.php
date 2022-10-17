@@ -36,7 +36,7 @@
             </div>
             @if(count($tasks) == 20)
             <div class="form-group mt-50">
-                <a href="{{route('gameplay')}}" class="btn btn-primary">Enter the Race</a>
+                <a href="{{route('home')}}" class="btn btn-primary">Enter the Race</a>
             </div>
             @endif
         </div>

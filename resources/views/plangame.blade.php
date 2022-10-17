@@ -16,21 +16,21 @@ $avatars = $gameInfo['avatars'];
                 <div class="form-group mt-50">
                     <h1>Enter your display name</h1>
                     <div class="col-md-8 offset-md-2">
-                        <input type="text" class="form-control" name="playername" id="playername" placeholder="Input your player name" required autocomplete=off @error('playername') is-invalid @enderror/>
+                        <input type="text" class="form-control" name="playername" id="playername" placeholder="Input your player name" value="{{$gameInfo['playerName']}}" required autocomplete=off @error('playername') is-invalid @enderror/>
                     </div>
                 </div>
                 <div class="form-group mt-50">
                     <h1>Select your avatar</h1>
-                    <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror/>
+                    <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror value="{{$gameInfo['playerAvatar']}}"/>
                     
                     <div style="position:relative">
                         <div class="avatarSlider">
-                            <div class="avatarContent" total="{{count($avatars)}}">
+                            <div class="avatarContent" total="{{count($avatars)}}" style="margin-left:-{{($gameInfo['playerAvatar']-1)*120}}px">
                             @foreach ($avatars as $avatar)
-                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem" id="{{$avatar['id']}}"/>
+                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="{{$avatar['id']}}"/>
                             @endforeach
                             @foreach ($avatars as $avatar)
-                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem" id="{{$avatar['id']}}"/>
+                                <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="{{$avatar['id']}}"/>
                             @endforeach
                             </div>
                         </div>
@@ -48,5 +48,8 @@ $avatars = $gameInfo['avatars'];
 @endsection
 
 @section('script')
-    <script src="{{asset('storage/js/home.js')}}" ></script>
+    <script>
+        let sliderPos = {{$gameInfo['playerAvatar']}} - 1;
+    </script>
+    <script src="{{asset('storage/js/plangame.js')}}" ></script>
 @endsection

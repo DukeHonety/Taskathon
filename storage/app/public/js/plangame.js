@@ -1,5 +1,4 @@
 let raceTimer;
-let sliderPos = 0;
 $(document).ready(function(){
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
