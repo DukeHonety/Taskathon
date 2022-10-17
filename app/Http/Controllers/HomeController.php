@@ -85,14 +85,22 @@ class HomeController extends Controller
             $newTask->title = $request->task;
             $newTask->user_id = $user->id;
             $newTask->save();
+
         }
+        $mtask = Player::where('user_id', $user->id)->get();
+        if(count($mtask) == 0)
+            return redirect()->route('home');
+        $mtask = $mtask[0];
+        $mtask->tasks = Task::where('user_id', $user->id)->count();
+        $mtask->save();
         // get data for user tasks
         $myTasks = Task::all()
             ->where('user_id', $user->id)
             ->toArray();
         $player = Player::select('*')
             ->where('user_id', $user->id)
-            ->get();
+            ->with('avatar')
+            ->get()->toArray();
         if (count($player) === 0) {
             return redirect()->route('home');
         }
@@ -111,9 +119,16 @@ class HomeController extends Controller
 		public function gameplay()
 		{
 			$user = Auth::user();
+            //test current player is ready for race
+            $allowMe = Player::where('user_id', $user->id)->get()->toArray();
+            if(count($allowMe) == 0)
+                return redirect()->route('home');
+            if($allowMe[0]['tasks'] != '20')
+                return redirect()->route('mytask');
+            //
 			$mytask = Task::select('*')->where('user_id', $user->id)->get()->toArray();
             $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
-            $players = Player::all()->toArray();
+            $players = Player::where('tasks', '20')->with('avatar')->get()->toArray();
 			$gameInfo = array(                
 				'race_time' => date('Y-m-d H:i:s'),
 				'tasks' => $mytask,

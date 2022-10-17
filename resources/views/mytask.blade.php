@@ -13,7 +13,7 @@
             <input type="hidden" id="taskcount" value="{{count($tasks)}}"/>
             <div class="form-group mt-50 flex justify-center flex-col">
                 <h1>Welcome, <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
-                <img src="{{asset('storage/avatars/'.$playerInfo['character'].'.png')}}" class="avatarSlideItem"/>
+                <img src="{{asset('storage/avatars/'.$playerInfo['avatar']['url'])}}" class="avatarSlideItem"/>
             </div>
             <form class="mt-50" method="POST" >
                 {{ csrf_field() }}

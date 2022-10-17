@@ -20,7 +20,7 @@
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h1><span id="completed">{{$gameInfo['completed']}}</span> tasks are completed on {{count($tasks)}} tasks</h1>
+                    <h1><span id="completed">{{$gameInfo['completed']}}</span> task(s) are completed on {{count($tasks)}} tasks</h1>
                     <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button>
                 </div>
                 <div class="card-body task_tab container row">

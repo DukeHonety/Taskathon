@@ -11,4 +11,8 @@ class Player extends Model
     protected $table = 'players';
     // public $timestamps = false;
     const UPDATED_AT = null;
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class, 'character');
+    }
 }
