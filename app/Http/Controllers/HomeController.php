@@ -115,9 +115,8 @@ class HomeController extends Controller
 			$gameInfo = array(                
 				'race_time' => date('Y-m-d H:i:s'),
 				'tasks' => $mytask,
-				'tplayers' => 14,
-				'leader' => 'Dragon',
-				'finished' => 10,
+				'leader' => '',
+				'finished' => Player::where('complete', 20)->count(),
                 'completed' => $completetask,
                 'players' => $players
 			);
