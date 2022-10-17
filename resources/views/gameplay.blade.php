@@ -9,7 +9,6 @@
     <div class="row justify-content-center">
         <div class="infoTab">
             <div>Total Players : {{count($players)}}</div>
-            <div>Current Leader : {{$gameInfo['leader']}}</div>
             <div>Finished Players : {{$gameInfo['finished']}}</div>
         </div>
         <div class="col-md-8 text-center">
@@ -40,7 +39,7 @@
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h1><span id="completed">{{$gameInfo['completed']}}</span> task(s) are completed on {{count($tasks)}} tasks</h1>
+                    <h1><span id="completed">To do list {{$gameInfo['completed']}}</span> / {{count($tasks)}}</h1>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container row" style="background: lavenderblush;">
