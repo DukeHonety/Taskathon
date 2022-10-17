@@ -19,7 +19,7 @@
             
             <div class="card mt-50">
                 <div class="card-header">
-                    <h1>Game status</h1>
+                    <h1>Progress Bar</h1>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body gameprogress">
@@ -39,7 +39,7 @@
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h1><span id="completed">To do list {{$gameInfo['completed']}}</span> / {{count($tasks)}}</h1>
+                    <h1>To do list {{$gameInfo['completed']}} / {{count($tasks)}}</h1>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container row" style="background: lavenderblush;">
