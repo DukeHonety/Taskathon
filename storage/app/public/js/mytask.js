@@ -3,7 +3,8 @@ $(document).ready(function(){
     $("button#taskadd").click(function(){
         const tasklimit = $("input#taskcount").val();
         if (parseInt(tasklimit) >= 20 && $("input#taskId").val() == '') {
-            alert("You can input 20 tasks at maximum!");
+            
+            toastr.info("You can input 20 tasks at maximum!");
             return false;
         }
         return true;

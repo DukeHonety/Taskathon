@@ -14,7 +14,7 @@ $players = $gameInfo['players'];
         <div class="col-md-8 text-center">
             <div class="mt-50">
                 <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
-                <lab>Time remaining: <span id="countTime"></span></lab>
+                <label class="text-24">Time remaining: <span id="countTime"></span></label>
             </div>
             
             <div class="card mt-50">
@@ -47,7 +47,7 @@ $players = $gameInfo['players'];
                     <h1>To do list {{$gameInfo['completed']}} / {{count($tasks)}}</h1>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
-                <div class="card-body task_tab container row" style="background: lavenderblush;">
+                <div class="card-body task_tab container" style="background: lavenderblush;">
                     @foreach ($tasks as $key => $task)
                         <div class="col-md-5 taskItem playItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
                             @if($task['status'] == 1)

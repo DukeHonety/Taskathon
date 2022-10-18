@@ -28,17 +28,16 @@ $(document).ready(function(){
         $("input#playeravatar").val(avatarId);
     })
     function goPlanTasks(){
-        const playerAvatar = $("input#playeravatar").val();
-        if (playerAvatar === '' || playerAvatar === '0' ){
-            alert("Select one Avatar");
-            return false;
-        }
         $("form.hometab").submit();
     };
 
     $("form.hometab button#goPlan").click(function(){
-        $playerAvatar = $("input#playeravatar").val();
-        $.get('imagestatus/'+$playerAvatar, function(data){
+        const playerAvatar = $("input#playeravatar").val();
+        if (playerAvatar === '' || playerAvatar == 0 ){
+            toastr.warning("Select one Avatar");
+            return false;
+        }
+        $.get('imagestatus/'+playerAvatar, function(data){
             if(data){
                 goPlanTasks();
             }
