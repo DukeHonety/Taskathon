@@ -65,6 +65,7 @@ button.slide-right{
     background-color: #E6EEFF;
     font-size: 24px;
     text-transform: capitalize;
+    margin:5px;
 }
 .taskItem{
     height: 45px;
