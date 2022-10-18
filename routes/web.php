@@ -35,5 +35,5 @@ Route::post('/mytask', [ HomeController::class, 'mytask' ])->name('mytask');
 Route::post('/updatetask', [ HomeController::class, 'updatetask' ])->name('updatetask');
 
 Route::get('/plangame', [ HomeController::class, 'plangame' ])->name('plangame');
-Route::get('/imagstatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
-Route::get('/imagstatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');
+Route::get('/imagestatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
+Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');

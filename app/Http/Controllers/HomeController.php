@@ -77,7 +77,12 @@ class HomeController extends Controller
         return Avatar::all()->toArray();
     }
     public function imagestatus($id){
-        return Avatar::find($id);
+        $amodel = Avatar::where('id', $id)->get();
+        if(count($amodel) == 0)
+            return false;
+        if($amodel[0]->used == 1)
+            return false;
+        return true; 
     }
 
     /**

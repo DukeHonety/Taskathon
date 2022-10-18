@@ -22,7 +22,7 @@ $avatars = $gameInfo['avatars'];
                 <div class="form-group mt-50 relative">
                     <div style="position:relative">
                         <h1>Select your avatar</h1>
-                        <button type="submit" id="submit" class="btn btn-primary text-24" style="position:absolute; right:0px; top:0px">Next</button>
+                        <button type="button" id="goPlan" class="btn btn-primary text-24" style="position:absolute; right:0px; top:0px">Next</button>
                     </div>
                     <input type="number" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror value="{{$gameInfo['playerAvatar']}}"/>                    
                     <div class="row">

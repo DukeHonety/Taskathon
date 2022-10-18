@@ -10,7 +10,7 @@ $(document).ready(function(){
         $("#countTime").html(getTimeStr(betweenTime));
     }, 1000);
     imageTimer = setInterval(function() {
-        $.get('imagstatus/all', function(data){
+        $.get('imagestatus/all', function(data){
             data.forEach((image) => {
                 if (image.used){
                     $("img#avatar"+image.id).parent().hide();
@@ -27,18 +27,23 @@ $(document).ready(function(){
         $(this).addClass("active");
         $("input#playeravatar").val(avatarId);
     })
-    $("button#submit").click(function(){
+    function goPlanTasks(){
         const playerAvatar = $("input#playeravatar").val();
         if (playerAvatar === '' || playerAvatar === '0' ){
             alert("Select one Avatar");
             return false;
         }
-        return true;
-    });
+        $("form.hometab").submit();
+    };
 
-    $("fomr.hometab button#submit").click(function(){
+    $("form.hometab button#goPlan").click(function(){
         $playerAvatar = $("input#playeravatar").val();
-        return false;
+        $.get('imagestatus/'+$playerAvatar, function(data){
+            if(data){
+                goPlanTasks();
+            }
+            $("input#playeravatar").val(0);
+        });
     });
 
     // $("button.slide-left").click(function(){
