@@ -1,13 +1,28 @@
 let raceTimer;
+let imageTimer;
 $(document).ready(function(){
+    clearTimeout(raceTimer);
+    clearTimeout(imageTimer);
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
         var today = new Date();
-        var betwenTime = new Date(raceTime.getTime() - today.getTime());
-        $("#countTime").html(getTimeStr(betwenTime));
+        var betweenTime = new Date(raceTime.getTime() - today.getTime());
+        $("#countTime").html(getTimeStr(betweenTime));
     }, 1000);
+    imageTimer = setInterval(function() {
+        $.get('imagstatus/all', function(data){
+            data.forEach((image) => {
+                if (image.used){
+                    $("img#avatar"+image.id).parent().hide();
+                }
+                else
+                    $("img#avatar"+image.id).parent().show();
+            });
+        });
+    }, 3000);
+
     $(".avatarSlideItem").click(function(){
-        const avatarId = $(this).attr("id");
+        const avatarId = $(this).attr("imgid");
         $(".avatarSlideItem").removeClass("active");
         $(this).addClass("active");
         $("input#playeravatar").val(avatarId);
@@ -20,6 +35,12 @@ $(document).ready(function(){
         }
         return true;
     });
+
+    $("fomr.hometab button#submit").click(function(){
+        $playerAvatar = $("input#playeravatar").val();
+        return false;
+    });
+
     // $("button.slide-left").click(function(){
     //     const total = parseInt($(".avatarContent").attr("total"));
     //     sliderPos++;

@@ -66,9 +66,18 @@ class HomeController extends Controller
             'playerName'=> $pName,
             'playerAvatar'=> $pAvatar,
             'race_time' => date('2022-10-18 0:0:0'),
-            'avatars' => Avatar::where('used', 0)->get()->toArray()
+            'avatars' => Avatar::all()->toArray()
         ];
         return view('plangame', compact('gameInfo'));
+    }
+    /**
+     * Return image status
+     */
+    public function imagestatusall(){
+        return Avatar::all()->toArray();
+    }
+    public function imagestatus($id){
+        return Avatar::find($id);
     }
 
     /**
