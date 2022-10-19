@@ -26,7 +26,7 @@
                 @endif
                 <div class="input-group mb-3">
                     <input type="hidden" class="form-control" name="taskId" id="taskId" value=""/>
-                    <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus>
+                    <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus maxlength="30">
                     <div class="input-group-append">
                         <button type="submit" id="taskadd" class="btn btn-outline-secondary text-24">Add</button>
                     </div>

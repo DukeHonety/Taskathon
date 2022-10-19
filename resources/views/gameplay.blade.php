@@ -18,7 +18,7 @@ $user = $gameInfo['userInfo'];
                 <label class="text-24">Time remaining: <span id="countTime"></span></label>
             </div>
             @if ($user['complete'] == 20)
-                <h2>You finished !</h2>
+                <h2>Congrats! You finished!</h2>
             @endif
             <div class="card">
                 <div class="card-header">

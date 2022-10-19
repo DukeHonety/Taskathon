@@ -9,7 +9,7 @@ $(document).ready(function(){
         }
         return true;
     });
-    $(".taskItem").click(function(){
+    $(".task_tab .item").click(function(){
         const targetId = $(this).attr("taskId");
         $("input#taskId").val(targetId);
         $("button#taskadd").html("Update");
