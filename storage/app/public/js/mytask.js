@@ -24,10 +24,11 @@ $(document).ready(function(){
             }
             if (parseInt(taskId) > 0){
                 toastr.success("You just update a task!");
+                $("div[taskid='"+data['id']+"']").html(data['title']);
             }
             else {
                 toastr.success("You just create a task!");
-                $("div.task_tab").append('<div class="col-md-5 item btn btn-light" taskId="' + data['id'] + '">' + data['title'] + '</div>');
+                $("div.task_tab").append('<div class="col-md-5 item btn btn-light" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 $("span#numberTasks").html(parseInt($("span#numberTasks").html())+1);
             }
             $("input#taskId").val('');

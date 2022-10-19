@@ -30,8 +30,13 @@ $(document).ready(function(){
                     numberComplete.html(parseInt(numberComplete.html())-1);
                 }
                 getProgress();
-                if(parseInt(numberComplete.html()) == 20)
+                if(parseInt(numberComplete.html()) == 20){
                     toastr.success("Congratulation! You just finish all tasks");
+                    $("#congratLabel").show();
+                }
+                else
+                    $("#congratLabel").hide();
+
             }
         });
     });

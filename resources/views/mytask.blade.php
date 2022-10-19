@@ -11,13 +11,13 @@
             <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
             <h3>Race starts in <span id="countTime"></span></h3>
             <div class="form-group mt-50 flex justify-center flex-col">
-                <h1>Welcome, <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
-                <img src="{{asset('storage/avatars/'.$playerInfo['avatar']['url'])}}" class="avatarSlideItem"/>
+                <h1>Welcome <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
+                <img src="{{asset('storage/avatars/'.$playerInfo['avatar']['url'])}}" class="avatarSlideItem my-30"/>
             </div>
-            <div class="mt-50">
+            <div>
                 {{ csrf_field() }}
                 @if(count($tasks) == 20)
-                <div class="form-group my-50">
+                <div class="form-group my-30">
                     <a href="{{route('race')}}" class="btn btn-primary text-24"><i class="fa fa-running"></i> Enter the Race</a>
                 </div>
                 @else

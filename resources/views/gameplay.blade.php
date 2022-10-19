@@ -17,9 +17,7 @@ $user = $gameInfo['userInfo'];
                 <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
                 <label class="text-24">Time remaining: <span id="countTime"></span></label>
             </div>
-            @if ($user['complete'] == 20)
-                <h2>Congrats! You finished!</h2>
-            @endif
+            <h2 id="congratLabel" style="display:<?php echo $user['complete'] == 20 ? 'hidden' : ''; ?>">Congrats! You finished!</h2>
             <div class="card">
                 <div class="card-header">
                     <h2>Progress Bar</h2>
