@@ -29,7 +29,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [ HomeController::class, 'gameplay' ])->name('home');
-Route::get('/gamestatus', [ HomeController::class, 'gamestatus' ])->name('home');
+Route::get('/gamestatus', [ HomeController::class, 'gamestatus' ]);
 
 Route::post('/gomytask', [ HomeController::class, 'gomytask' ])->name('gomytask');
 Route::get('/mytask', [ HomeController::class, 'mytask' ])->name('mytask');

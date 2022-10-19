@@ -31,7 +31,7 @@ $user = $gameInfo['userInfo'];
                             <div class="info" style="margin-left:calc(<?php echo $player[
                                 'complete'
                             ] * 5; ?>% - 50px);">
-                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" style="<?php echo $user['id'] == $player['id'] ? 'border:1px solid green;' : ''?>"/>
+                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" style="<?php echo $user['id'] == $player['id'] ? 'border:1px solid green;' : ''; ?>"/>
                                 <span id="name">{{$player['name']}}</span>
                             </div>
                             <div class="progress">
