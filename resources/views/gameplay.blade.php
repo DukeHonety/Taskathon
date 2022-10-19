@@ -30,15 +30,12 @@ $user = $gameInfo['userInfo'];
                         <div class="playerprogress" playerId="{{$player['id']}}">
                             <div class="info" style="margin-left:calc(<?php echo $player[
                                 'complete'
-                            ] * 5; ?>% - 75px);">
-                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}"/>
+                            ] * 5; ?>% - 50px);">
+                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}"/>
                                 <div id="name" style="font-size:18px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player[
-                                    'complete'
-                                ] *
-                                    5; ?>%" aria-valuenow="{{$player['complete']*5}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player['complete'] * 5; ?>%;" aria-valuenow="{{$player['complete']*5}}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     @endforeach
@@ -47,7 +44,7 @@ $user = $gameInfo['userInfo'];
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h2>Task list {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
+                    <h2>Task List {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container" style="background: lavenderblush;">

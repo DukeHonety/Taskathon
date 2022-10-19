@@ -36,6 +36,6 @@ Route::get('/mytask', [ HomeController::class, 'mytask' ])->name('task');
 Route::post('/mytask', [ HomeController::class, 'mytask' ]);
 Route::post('/updatetask', [ HomeController::class, 'updatetask' ])->name('updatetask');
 
-Route::get('/plangame', [ HomeController::class, 'plangame' ])->name('avatar');
+Route::get('/avatar', [ HomeController::class, 'avatar' ])->name('avatar');
 Route::get('/imagestatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
 Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');

@@ -55,7 +55,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function plangame()
+    public function avatar()
     {
         date_default_timezone_set('Asia/Kolkata');
         $user = Auth::user();
@@ -72,7 +72,7 @@ class HomeController extends Controller
             'race_time' => date('2022-10-18 0:0:0'),
             'avatars' => Avatar::all()->toArray()
         ];
-        return view('plangame', compact('gameInfo'));
+        return view('avatar', compact('gameInfo'));
     }
     /**
      * Return image status

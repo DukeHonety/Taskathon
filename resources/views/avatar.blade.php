@@ -43,5 +43,5 @@ $avatars = $gameInfo['avatars'];
     <script>
         let sliderPos = <?php echo $gameInfo['playerAvatar'];?> - 1;
     </script>
-    <script src="{{asset('storage/js/plangame.js')}}" ></script>
+    <script src="{{asset('storage/js/avatar.js')}}" ></script>
 @endsection

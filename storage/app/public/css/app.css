@@ -114,6 +114,7 @@ button.slide-right{
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor:pointer;
 }
 .playerprogress .info img{
     width: 150px;
