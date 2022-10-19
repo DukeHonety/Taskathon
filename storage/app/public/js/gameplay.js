@@ -14,7 +14,7 @@ $(document).ready(function(){
 
         $.post('/updatetask', ajax_data, function(result){
             $("span#completed").html(completedTask);
-            window.location.reload();
+            // window.location.reload();
         });
     });
     raceTimer = setInterval(function() {

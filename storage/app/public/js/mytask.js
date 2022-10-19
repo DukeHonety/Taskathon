@@ -1,13 +1,39 @@
 let raceTimer;
 $(document).ready(function(){
     $("button#taskadd").click(function(){
-        const tasklimit = $("input#taskcount").val();
+        const tasklimit = $("span#numberTasks").html();
         if (parseInt(tasklimit) >= 20 && $("input#taskId").val() == '') {
-            
             toastr.info("You already have 20 tasks. To add more, edit your tasks below");
-            return false;
+            return;
         }
-        return true;
+        const newtask = $("input#task").val();
+        const taskId = $("input#taskId").val();
+        if(newtask == ''){
+            toastr.warning("Input task");
+            return;
+        }
+        const ajax_data = {
+            _token: $('input[name="_token"]').val(),
+            taskId: taskId,
+            task: newtask
+        };
+        $.post("mytask", ajax_data, function(data) {
+            if (!data){
+                toastr.warning(data.message);
+                return;
+            }
+            if (parseInt(taskId) > 0){
+                toastr.success("You just update a task!");
+            }
+            else {
+                toastr.success("You just create a task!");
+                $("div.task_tab").append('<div class="col-md-5 item btn btn-light" taskId="' + data['id'] + '">' + data['title'] + '</div>');
+                $("span#numberTasks").html(parseInt($("span#numberTasks").html())+1);
+            }
+            $("input#taskId").val('');
+            $("input#task").val('');
+            $("button#taskadd").html("Add");
+        });
     });
     $(".task_tab .item").click(function(){
         const targetId = $(this).attr("taskId");

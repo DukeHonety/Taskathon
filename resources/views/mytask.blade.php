@@ -10,12 +10,11 @@
         <div class="col-md-8 text-center">
             <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
             <h3>Race starts in <span id="countTime"></span></h3>
-            <input type="hidden" id="taskcount" value="{{count($tasks)}}"/>
             <div class="form-group mt-50 flex justify-center flex-col">
                 <h1>Welcome, <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
                 <img src="{{asset('storage/avatars/'.$playerInfo['avatar']['url'])}}" class="avatarSlideItem"/>
             </div>
-            <form class="mt-50" method="POST" >
+            <div class="mt-50">
                 {{ csrf_field() }}
                 @if(count($tasks) == 20)
                 <div class="form-group my-50">
@@ -28,12 +27,12 @@
                     <input type="hidden" class="form-control" name="taskId" id="taskId" value=""/>
                     <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus maxlength="30">
                     <div class="input-group-append">
-                        <button type="submit" id="taskadd" class="btn btn-outline-secondary text-24">Add</button>
+                        <button type="button" id="taskadd" class="btn btn-outline-secondary text-24">Add</button>
                     </div>
                 </div>
-            </form>
+            </div>
             <div class="form-group mt-50">
-                <h1>My tasks {{count($tasks)}}/20</h1>
+                <h1>My tasks <span id="numberTasks">{{count($tasks)}}</span>/20</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
                         <div class="col-md-5 item btn btn-light" taskId="{{$task['id']}}">{{$task['title']}}</div>

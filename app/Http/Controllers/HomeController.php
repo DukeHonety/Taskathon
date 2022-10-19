@@ -152,13 +152,16 @@ class HomeController extends Controller
             $newTask->user_id = $user->id;
             $newTask->save();
 
+            // update player task number
+            $mtask = Player::where('user_id', $user->id)->get();
+            if(count($mtask) == 0)
+                return redirect()->route('avatar');
+            $mtask = $mtask[0];
+            $mtask->tasks = Task::where('user_id', $user->id)->count();
+            $mtask->save();
+            return $newTask;
         }
-        $mtask = Player::where('user_id', $user->id)->get();
-        if(count($mtask) == 0)
-            return redirect()->route('avatar');
-        $mtask = $mtask[0];
-        $mtask->tasks = Task::where('user_id', $user->id)->count();
-        $mtask->save();
+        
         // get data for user tasks
         $myTasks = Task::all()
             ->where('user_id', $user->id)
