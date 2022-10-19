@@ -32,7 +32,7 @@ $user = $gameInfo['userInfo'];
                                 'complete'
                             ] * 5; ?>% - 50px);">
                                 <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" style="<?php echo $user['id'] == $player['id'] ? 'border:1px solid green;' : ''; ?>"/>
-                                <span id="name">{{$player['name']}}</span>
+                                <div id="name" style="font-size:18px; width:100px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player[
@@ -47,7 +47,7 @@ $user = $gameInfo['userInfo'];
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h2>To do list {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
+                    <h2>Task list {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container" style="background: lavenderblush;">
