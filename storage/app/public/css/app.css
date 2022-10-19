@@ -102,7 +102,7 @@ button.slide-right{
 }
 .gameprogress{
     text-align: left;
-    padding: 20px 50px;
+    padding: 20px 75px;
 }
 .playerprogress{
     margin:10px;
@@ -116,8 +116,8 @@ button.slide-right{
     align-items: center;
 }
 .playerprogress .info img{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .card-header button{

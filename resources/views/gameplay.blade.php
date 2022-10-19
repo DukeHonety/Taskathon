@@ -30,9 +30,9 @@ $user = $gameInfo['userInfo'];
                         <div class="playerprogress" playerId="{{$player['id']}}">
                             <div class="info" style="margin-left:calc(<?php echo $player[
                                 'complete'
-                            ] * 5; ?>% - 50px);">
+                            ] * 5; ?>% - 75px);">
                                 <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}"/>
-                                <div id="name" style="font-size:18px; width:100px; text-align: center;">{{$player['name']}}</div>
+                                <div id="name" style="font-size:18px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player[
