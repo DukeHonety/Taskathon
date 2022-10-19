@@ -41,11 +41,15 @@ class HomeController extends Controller
             'leader' => '',
             'finished' => Player::where('complete', 20)->count(),
             'completed' => $completetask,
-            'players' => $players
+            'players' => $players,
+            'userInfo' => $allowMe[0]
         );
         return view('gameplay', compact('gameInfo'));
     }
-    
+    public function gamestatus()
+    {
+        return Player::all()->toArray();
+    }
     /**
      * Show the application dashboard.
      *

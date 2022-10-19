@@ -1,4 +1,5 @@
 let raceTimer;
+let gameTimer;
 $(document).ready(function(){
     $(".taskItem").click(function(){
         const taskItem = $(this);
@@ -22,4 +23,16 @@ $(document).ready(function(){
         var betwenTime = new Date(raceTime.getTime() - today.getTime());
         $("#countTime").html(getTimeStr(betwenTime));
     }, 1000);
+
+    gameTimer = setInterval(function() {
+        $.get('gamestatus', function(data){
+            data.forEach((player) => {
+                let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
+                playerTab.find("div.info").css("margin-left", "calc(" + player.complete*5+"% - 50px)")
+                playerTab.find("span#name").html(player.name);
+                playerTab.find("div.progress div").css('width', "calc(" + player.complete*5+"%" );
+                playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
+            });
+        });
+    }, 3000);
 });

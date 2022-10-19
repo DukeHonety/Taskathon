@@ -1,6 +1,7 @@
 <?php
 $tasks = $gameInfo['tasks'];
 $players = $gameInfo['players'];
+$user = $gameInfo['userInfo'];
 ?>
 @extends('layouts.app')
 
@@ -11,25 +12,27 @@ $players = $gameInfo['players'];
             <div>Total Players : {{count($players)}}</div>
             <div>Finished Players : {{$gameInfo['finished']}}</div>
         </div>
-        <div class="col-md-8 text-center">
+        <div class="col-md-10 text-center">
             <div class="mt-50">
                 <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
                 <label class="text-24">Time remaining: <span id="countTime"></span></label>
             </div>
-            
-            <div class="card mt-50">
+            @if ($user['complete'] == 20)
+                <h2>You finished !</h2>
+            @endif
+            <div class="card">
                 <div class="card-header">
-                    <h1>Progress Bar</h1>
+                    <h2>Progress Bar</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body gameprogress">
                     @foreach($players as $player)
-                        <div class="playerprogress">
+                        <div class="playerprogress" playerId="{{$player['id']}}">
                             <div class="info" style="margin-left:calc(<?php echo $player[
                                 'complete'
                             ] * 5; ?>% - 50px);">
-                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}"/>
-                                <span>{{$player['name']}}</span>
+                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" style="{{$user['id'] == $player['id'] ? 'border:1px solid green;' : ''}}"/>
+                                <span id="name">{{$player['name']}}</span>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?php echo $player[
@@ -44,7 +47,7 @@ $players = $gameInfo['players'];
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h1>To do list {{$gameInfo['completed']}} / {{count($tasks)}}</h1>
+                    <h2>To do list {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container" style="background: lavenderblush;">
