@@ -1,6 +1,7 @@
 <?php
     $tasks = $gameInfo['tasks'];
     $playerInfo = $gameInfo['player'];
+    $raceInfo = $gameInfo['raceInfo'];
 ?>
 @extends('layouts.app')
 
@@ -8,7 +9,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
-            <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
+            <input type="hidden" id="raceTime" value="{{$raceInfo['start_at']}}" />
             <h3>Race starts in <span id="countTime"></span></h3>
             <div class="form-group mt-50 flex justify-center flex-col">
                 <h1>Welcome <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>

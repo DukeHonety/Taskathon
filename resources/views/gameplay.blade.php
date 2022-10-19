@@ -2,6 +2,7 @@
 $tasks = $gameInfo['tasks'];
 $players = $gameInfo['players'];
 $user = $gameInfo['userInfo'];
+$raceInfo = $gameInfo['raceInfo'];
 ?>
 @extends('layouts.app')
 
@@ -14,8 +15,9 @@ $user = $gameInfo['userInfo'];
         </div>
         <div class="col-md-10 text-center">
             <div class="mt-50">
-                <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
-                <label class="text-24">Time remaining: <span id="countTime"></span></label>
+                <input type="hidden" id="raceTime" value="{{$raceInfo['start_at']}}" />
+                <input type="hidden" id="race_time" value="{{$raceInfo['race_time']}}" />
+                <label class="text-24"><span id="timeLabel">Time remaining</span>: <span id="countTime"></span></label>
             </div>
             <h2 id="congratLabel" style="display:<?php echo $user['complete'] == 20 ? 'hidden' : ''; ?>">Congrats! You finished!</h2>
             <div class="card">

@@ -1,7 +1,54 @@
 let raceTimer;
 let gameTimer;
+let gamePlaying = true;
 $(document).ready(function(){
+    
+    raceTimer = setInterval(function() {
+        let raceTime = new Date($('input#raceTime').val());
+        const racingTime = parseInt($('input#race_time').val());
+        let finishTime = new Date(raceTime.getTime() + racingTime * 3600 * 1000);
+
+        var today = new Date();
+        let betweenStarTime = raceTime.getTime() - today.getTime();
+        let betweenFinishTime = finishTime.getTime() - today.getTime();
+        if (betweenStarTime > 0){
+            $("#timeLabel").html("Race starts in");
+            $("#countTime").html(getTimeStr(new Date(betweenStarTime)));
+            gamePlaying = false;
+        }
+        else if (betweenFinishTime > 0){
+            $("#timeLabel").html("Time remaining");
+            $("#countTime").html(getTimeStr(new Date(betweenFinishTime)));
+            gamePlaying = true;
+        }else{
+            $("#countTime").parent().html("The race is finished.");
+            toastr.warning("The race is finished");
+            gamePlaying = false;
+            clearTimeout(raceTimer);
+        }
+    }, 1000);
+
+    gameTimer = setInterval(getProgress, 5000);
+
+    function getProgress(){
+        if (!gamePlaying)
+            clearTimeout(gameTimer);
+        $.get('gamestatus', function(data){
+            data.forEach((player) => {
+                let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
+                playerTab.find("div.info").css("margin-left", "calc(" + player.complete*5+"% - 50px)")
+                playerTab.find("span#name").html(player.name);
+                playerTab.find("div.progress div").css('width', "calc(" + player.complete*5+"%" );
+                playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
+            });
+        });
+    }
+    
     $(".taskItem").click(function(){
+        if (!gamePlaying) {
+            toastr.warning("You can check out tasks when the race is playing");
+            return;
+        }
         const taskItem = $(this);
         const tastId = taskItem.attr("taskid");
         let completedTask = parseInt($("span#completed").html());
@@ -39,24 +86,4 @@ $(document).ready(function(){
             }
         });
     });
-    raceTimer = setInterval(function() {
-        const raceTime = new Date($('input#raceTime').val());
-        var today = new Date();
-        var betwenTime = new Date(raceTime.getTime() - today.getTime());
-        $("#countTime").html(getTimeStr(betwenTime));
-    }, 1000);
-
-    gameTimer = setInterval(getProgress, 5000);
-
-    function getProgress(){
-        $.get('gamestatus', function(data){
-            data.forEach((player) => {
-                let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
-                playerTab.find("div.info").css("margin-left", "calc(" + player.complete*5+"% - 50px)")
-                playerTab.find("span#name").html(player.name);
-                playerTab.find("div.progress div").css('width', "calc(" + player.complete*5+"%" );
-                playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
-            });
-        });
-    }
 });

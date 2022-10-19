@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Storage;
 
 $avatars = $gameInfo['avatars'];
+$raceInfo = $gameInfo['raceInfo'];
 ?>
 @extends('layouts.app')
 
@@ -9,7 +10,7 @@ $avatars = $gameInfo['avatars'];
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
-            <input type="hidden" id="raceTime" value="{{$gameInfo['race_time']}}" />
+            <input type="hidden" id="raceTime" value="{{$raceInfo['start_at']}}" />
             <h3>Race starts in <span id="countTime"></span></h3>
             <form class="hometab" method="POST" action="{{ route('gomytask') }}">
                 {{ csrf_field() }}

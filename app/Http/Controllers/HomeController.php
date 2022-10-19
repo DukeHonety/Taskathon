@@ -37,7 +37,7 @@ class HomeController extends Controller
         $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
         $players = Player::where('tasks', '20')->with('avatar')->get()->toArray();
         $gameInfo = array(                
-            'race_time' => date('Y-m-d H:i:s'),
+            'raceInfo' => Race::select('*')->orderBy('start_at', 'desc')->limit(1)->get()->toArray()[0],
             'tasks' => $mytask,
             'leader' => '',
             'finished' => Player::where('complete', 20)->count(),
@@ -176,7 +176,7 @@ class HomeController extends Controller
         }
         $player = $player[0];
         $gameInfo = [
-            'race_time' => date('Y-m-d H:i:s'),
+            'raceInfo' => Race::select('*')->orderBy('start_at', 'desc')->limit(1)->get()->toArray()[0],
             'player' => $player,
             'tasks' => $myTasks,
         ];

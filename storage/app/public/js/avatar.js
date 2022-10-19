@@ -6,8 +6,13 @@ $(document).ready(function(){
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
         var today = new Date();
-        var betweenTime = new Date(raceTime.getTime() - today.getTime());
-        $("#countTime").html(getTimeStr(betweenTime));
+        const betweenTime = raceTime.getTime() - today.getTime();
+        if (betweenTime > 0)
+            $("#countTime").html(getTimeStr(new Date(betweenTime)));
+        else{
+            $("#countTime").parent().html("The race is already started.");
+            clearTimeout(raceTimer);
+        }
     }, 1000);
     imageTimer = setInterval(function() {
         $.get('imagestatus/all', function(data){
