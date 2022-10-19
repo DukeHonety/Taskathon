@@ -44,14 +44,14 @@ $user = $gameInfo['userInfo'];
             <div class="card mt-50">
                 {{ csrf_field() }}
                 <div class="card-header">
-                    <h2>Task List {{$gameInfo['completed']}} / {{count($tasks)}}</h2>
+                    <h2>Task List <span id="numberComplete">{{$gameInfo['completed']}}</span> / {{count($tasks)}}</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container" style="background: lavenderblush;">
                     @foreach ($tasks as $key => $task)
                         <div class="col-md-5 taskItem playItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
                             @if($task['status'] == 1)
-                              <i class="fa fa-check-square"></i>
+                              <i class="far fa-check-square"></i>
                             @else
                               <i class="far fa-square"></i>
                             @endif

@@ -13,8 +13,26 @@ $(document).ready(function(){
         }
 
         $.post('/updatetask', ajax_data, function(result){
-            $("span#completed").html(completedTask);
-            // window.location.reload();
+            if(parseInt(result)>0){
+                console.log(result);
+                const currentTask = $(".taskItem[taskid='"+result+"']");
+                const numberComplete = $("span#numberComplete");
+                if (status == 1){
+                    currentTask.addClass('active');
+                    currentTask.find("i").addClass('fa-check-square');
+                    currentTask.find("i").removeClass('fa-square');
+                    numberComplete.html(parseInt(numberComplete.html())+1);
+                }
+                else{
+                    currentTask.removeClass('active');
+                    currentTask.find("i").addClass('fa-square');
+                    currentTask.find("i").removeClass('fa-check-square');
+                    numberComplete.html(parseInt(numberComplete.html())-1);
+                }
+                getProgress();
+                if(parseInt(numberComplete.html()) == 20)
+                    toastr.success("Congratulation! You just finish all tasks");
+            }
         });
     });
     raceTimer = setInterval(function() {
@@ -24,7 +42,9 @@ $(document).ready(function(){
         $("#countTime").html(getTimeStr(betwenTime));
     }, 1000);
 
-    gameTimer = setInterval(function() {
+    gameTimer = setInterval(getProgress, 5000);
+
+    function getProgress(){
         $.get('gamestatus', function(data){
             data.forEach((player) => {
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
@@ -34,5 +54,5 @@ $(document).ready(function(){
                 playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
             });
         });
-    }, 3000);
+    }
 });
