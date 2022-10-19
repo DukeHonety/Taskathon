@@ -19,7 +19,7 @@
                 {{ csrf_field() }}
                 @if(count($tasks) == 20)
                 <div class="form-group my-50">
-                    <a href="{{route('home')}}" class="btn btn-primary text-24"><i class="fa fa-running"></i> Enter the Race</a>
+                    <a href="{{route('race')}}" class="btn btn-primary text-24"><i class="fa fa-running"></i> Enter the Race</a>
                 </div>
                 @else
                     <h1>Enter 20 tasks to complete</h1>
