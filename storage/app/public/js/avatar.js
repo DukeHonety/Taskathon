@@ -33,6 +33,11 @@ $(document).ready(function(){
 
     $("form.hometab button#goPlan").click(function(){
         const playerAvatar = $("input#playeravatar").val();
+        const playerName = $("input#playername").val();
+        if (playerName === ''){
+            toastr.warning("Input your player name");
+            return;
+        }
         if (playerAvatar === '' || playerAvatar == 0 ){
             toastr.warning("Select one Avatar");
             return false;

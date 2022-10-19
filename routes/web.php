@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ Route::post('/updatetask', [ HomeController::class, 'updatetask' ])->name('updat
 Route::get('/avatar', [ HomeController::class, 'avatar' ])->name('avatar');
 Route::get('/imagestatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
 Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');
+
+
+Route::get('/settings', [DashboardController::class, 'index'])->name('settings');
+Route::post('/updatestart', [DashboardController::class, 'updatestart']);

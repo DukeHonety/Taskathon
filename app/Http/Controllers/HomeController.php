@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Avatar;
 use App\Models\Player;
 use App\Models\Task;
+use App\Models\Race;
 
 class HomeController extends Controller
 {
@@ -69,7 +70,7 @@ class HomeController extends Controller
         $gameInfo = [
             'playerName'=> $pName,
             'playerAvatar'=> $pAvatar,
-            'race_time' => date('2022-10-18 0:0:0'),
+            'raceInfo' => Race::select('*')->orderBy('start_at', 'desc')->limit(1)->get()->toArray()[0],
             'avatars' => Avatar::all()->toArray()
         ];
         return view('avatar', compact('gameInfo'));

@@ -17,19 +17,37 @@ $(document).ready(function(){
             taskId: taskId,
             task: newtask
         };
+        // check if new task is duplicated
+        let duplicated = false;
+        $("div.task_tab .item").each(function(){
+            if ($(this).html() == newtask){
+                duplicated = true;
+            }
+        });
+        console.log(duplicated);
+        if (duplicated){
+            toastr.warning("Same task is already existed");
+            return;
+        }
+        // update data
         $.post("mytask", ajax_data, function(data) {
             if (!data){
                 toastr.warning(data.message);
                 return;
             }
-            if (parseInt(taskId) > 0){
-                toastr.success("You just update a task!");
-                $("div[taskid='"+data['id']+"']").html(data['title']);
-            }
-            else {
+            const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
+            if (newFlag){
                 toastr.success("You just create a task!");
                 $("div.task_tab").append('<div class="col-md-5 item btn btn-light" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 $("span#numberTasks").html(parseInt($("span#numberTasks").html())+1);
+            }
+            else {
+                toastr.success("You just update a task!");
+                $("div[taskid='"+data['id']+"']").html(data['title']);
+            }
+            if (parseInt($("span#numberTasks").html()) >= 20){
+                $("#inputLabel").addClass('hidden');
+                $("#goRaceLabel").removeClass('hidden');
             }
             $("input#taskId").val('');
             $("input#task").val('');

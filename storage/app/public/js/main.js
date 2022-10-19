@@ -1,3 +1,5 @@
+let RACE_START_TIME = '';
+let RACE_END_TIME = '';
 $(document).ready(function(){
     $(".card-header button#minimize").click(function(){
         const card = $(this).parent().parent();

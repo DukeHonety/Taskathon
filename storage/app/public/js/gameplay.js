@@ -13,8 +13,7 @@ $(document).ready(function(){
         }
 
         $.post('/updatetask', ajax_data, function(result){
-            if(parseInt(result)>0){
-                console.log(result);
+            if(parseInt(result) > 0){
                 const currentTask = $(".taskItem[taskid='"+result+"']");
                 const numberComplete = $("span#numberComplete");
                 if (status == 1){

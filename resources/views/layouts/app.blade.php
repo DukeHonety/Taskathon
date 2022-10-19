@@ -44,6 +44,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('task') }}">{{ __('Tasks') }}</a>
                         </li>
+                        @if(Auth::user()->role == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('settings') }}">{{ __('Settings') }}</a>
+                        </li>
+                        @endif
                     </ul>
                     @endauth
                     <!-- Right Side Of Navbar -->
