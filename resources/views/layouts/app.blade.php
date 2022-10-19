@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>TaskAthon</title>
+    <title>WorkAthon</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    TaskAthon
+                    WorkAthon
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,13 +35,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ route('race') }}">{{ __('Race') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('plangame') }}">{{ __('PlanGame') }}</a>
+                            <a class="nav-link" href="{{ route('avatar') }}">{{ __('Avatar') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mytask') }}">{{ __('Mytask') }}</a>
+                            <a class="nav-link" href="{{ route('task') }}">{{ __('Task') }}</a>
                         </li>
                     </ul>
 

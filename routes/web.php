@@ -28,14 +28,14 @@ Route::get('/', function () {
 // });
 Auth::routes();
 
-Route::get('/home', [ HomeController::class, 'gameplay' ])->name('home');
+Route::get('/home', [ HomeController::class, 'gameplay' ])->name('race');
 Route::get('/gamestatus', [ HomeController::class, 'gamestatus' ]);
 
 Route::post('/gomytask', [ HomeController::class, 'gomytask' ])->name('gomytask');
-Route::get('/mytask', [ HomeController::class, 'mytask' ])->name('mytask');
-Route::post('/mytask', [ HomeController::class, 'mytask' ])->name('mytask');
+Route::get('/mytask', [ HomeController::class, 'mytask' ])->name('task');
+Route::post('/mytask', [ HomeController::class, 'mytask' ]);
 Route::post('/updatetask', [ HomeController::class, 'updatetask' ])->name('updatetask');
 
-Route::get('/plangame', [ HomeController::class, 'plangame' ])->name('plangame');
+Route::get('/plangame', [ HomeController::class, 'plangame' ])->name('avatar');
 Route::get('/imagestatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
 Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');

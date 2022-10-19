@@ -28,9 +28,9 @@ class HomeController extends Controller
         //test current player is ready for race
         $allowMe = Player::where('user_id', $user->id)->get()->toArray();
         if(count($allowMe) == 0)
-            return redirect()->route('plangame');
+            return redirect()->route('avatar');
         if($allowMe[0]['tasks'] != '20')
-            return redirect()->route('mytask');
+            return redirect()->route('task');
         //
         $mytask = Task::select('*')->where('user_id', $user->id)->get()->toArray();
         $completetask = Task::where('user_id', $user->id)->where('status', '1')->count();
@@ -121,7 +121,7 @@ class HomeController extends Controller
                 $amodel->used = 1;
                 $amodel->save();
             }
-            return redirect()->route('mytask');
+            return redirect()->route('task');
         } else {
             return redirect()->back();
         }
@@ -155,7 +155,7 @@ class HomeController extends Controller
         }
         $mtask = Player::where('user_id', $user->id)->get();
         if(count($mtask) == 0)
-            return redirect()->route('plangame');
+            return redirect()->route('avatar');
         $mtask = $mtask[0];
         $mtask->tasks = Task::where('user_id', $user->id)->count();
         $mtask->save();
@@ -168,7 +168,7 @@ class HomeController extends Controller
             ->with('avatar')
             ->get()->toArray();
         if (count($player) === 0) {
-            return redirect()->route('plangame');
+            return redirect()->route('avatar');
         }
         $player = $player[0];
         $gameInfo = [
