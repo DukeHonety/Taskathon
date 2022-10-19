@@ -15,9 +15,10 @@ $(document).ready(function(){
         }
     }, 1000);
     imageTimer = setInterval(function() {
+        const cPAvatar = parseInt($("input#currentPlayerAvatar").val());
         $.get('imagestatus/all', function(data){
             data.forEach((image) => {
-                if (image.used){
+                if (image.used && image.id != cPAvatar){
                     $("img#avatar"+image.id).parent().hide();
                 }
                 else
@@ -30,14 +31,14 @@ $(document).ready(function(){
         const avatarId = $(this).attr("imgid");
         $(".avatarSlideItem").removeClass("active");
         $(this).addClass("active");
-        $("input#playeravatar").val(avatarId);
+        $("input#playerAvatar").val(avatarId);
     })
     function goPlanTasks(){
         $("form.hometab").submit();
     };
 
     $("form.hometab button#goPlan").click(function(){
-        const playerAvatar = $("input#playeravatar").val();
+        const playerAvatar = $("input#playerAvatar").val();
         const playerName = $("input#playername").val();
         if (playerName === ''){
             toastr.warning("Input your player name");
@@ -51,7 +52,8 @@ $(document).ready(function(){
             if(data){
                 goPlanTasks();
             }
-            $("input#playeravatar").val(0);
+            else
+                $("input#playerAvatar").val(0);
         });
     });
 

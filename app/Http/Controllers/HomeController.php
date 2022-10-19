@@ -82,10 +82,16 @@ class HomeController extends Controller
         return Avatar::all()->toArray();
     }
     public function imagestatus($id){
+        $user = Auth::user();
+        $prevAvatar = 0;
+        $player = Player::where('user_id', $user->id)->get();
+        if (count($player) > 0){
+            $prevAvatar = $player[0]->character;
+        }
         $amodel = Avatar::where('id', $id)->get();
         if(count($amodel) == 0)
             return false;
-        if($amodel[0]->used == 1)
+        if($amodel[0]->used == 1 && $prevAvatar != $id)
             return false;
         return true; 
     }
@@ -97,7 +103,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $playerName = $request->playername;
-        $avatarId = $request->playeravatar;
+        $avatarId = $request->playerAvatar;
         $exist = Player::select('*')
             ->where('user_id', $user->id)
             ->get();

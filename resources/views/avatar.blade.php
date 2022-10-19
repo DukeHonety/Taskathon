@@ -25,10 +25,11 @@ $raceInfo = $gameInfo['raceInfo'];
                         <h1>Select your avatar</h1>
                         <button type="button" id="goPlan" class="btn btn-primary text-24" style="position:absolute; right:0px; top:0px">Next</button>
                     </div>
-                    <input type="hidden" class="form-control" name="playeravatar" id="playeravatar" placeholder="Input your player name" required autocomplete=off @error('playeravatar') is-invalid @enderror value="{{$gameInfo['playerAvatar']}}"/>                    
+                    <input type="hidden" class="form-control" name="currentPlayerAvatar" id="currentPlayerAvatar" required autocomplete=off  value="{{$gameInfo['playerAvatar']}}"/>  
+                    <input type="hidden" class="form-control" name="playerAvatar" id="playerAvatar" required autocomplete=off  value="{{$gameInfo['playerAvatar']}}"/>                    
                     <div class="row" style="padding:10px">
                         @foreach ($avatars as $avatar)
-                        <div class="col-sm-3 {{$avatar['used'] ? 'hidden' : ''}}">
+                        <div class="col-sm-3 {{($avatar['used'] && $avatar['id'] != $gameInfo['playerAvatar']) ? 'hidden' : ''}}">
                             <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="avatar{{$avatar['id']}}" imgid="{{$avatar['id']}}"/>
                         </div>
                         @endforeach
