@@ -56,7 +56,6 @@ button.slide-right{
     align-items: center;
     background-color: #E6EEFF;
     font-size: 24px;
-    text-transform: capitalize;
     margin:5px;
 }
 .taskItem{
@@ -95,6 +94,7 @@ button.slide-right{
     justify-content: space-around;
     font-size: 16px;
 }
+
 .gameprogress{
     text-align: left;
     padding: 20px 75px;
@@ -128,6 +128,9 @@ button.slide-right{
     display:none;
 }
 
+#countTime{
+    font-size: 20px;
+}
 
 .text-24{
     font-size: 24px;

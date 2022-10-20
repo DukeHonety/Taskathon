@@ -12,7 +12,7 @@
             <input type="hidden" id="raceTime" value="{{$raceInfo['start_at']}}" />
             <h3>Race starts in <span id="countTime"></span></h3>
             <div class="form-group mt-50 flex justify-center flex-col">
-                <h1>Welcome <span class="font-bold">{{$playerInfo['name']}}</span> !</h1>
+                <h1>Welcome <span class="font-bold text-capitalize">{{$playerInfo['name']}}</span>!</h1>
                 <img src="{{asset('storage/avatars/'.$playerInfo['avatar']['url'])}}" class="avatarSlideItem my-30"/>
             </div>
             <div>
@@ -30,10 +30,10 @@
                 </div>
             </div>
             <div class="form-group mt-50">
-                <h1>Your Tasks @if(count($tasks) != 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
+                <h1>Your Tasks @if(count($tasks) < 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 item btn btn-light" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-5 item btn btn-light text-capitalize" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>            

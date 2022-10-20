@@ -3,12 +3,14 @@ let imageTimer;
 $(document).ready(function(){
     clearTimeout(raceTimer);
     clearTimeout(imageTimer);
+    
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
         var today = new Date();
-        const betweenTime = raceTime.getTime() - today.getTime();
-        if (betweenTime > 0)
+        let betweenTime = raceTime.getTime() - today.getTime();
+        if (betweenTime > 0){
             $("#countTime").html(getTimeStr(new Date(betweenTime)));
+        }
         else{
             $("#countTime").parent().html("The race is already started.");
             clearTimeout(raceTimer);

@@ -1,8 +1,10 @@
 let raceTimer;
 $(document).ready(function(){
+    if (parseInt($("span#numberTasks").html()) <= 0)
+        $("span#numberTasks").parent().html("Your Tasks");
     $("button#taskadd").click(function(){
         const tasklimit = $("span#numberTasks").html();
-        if (parseInt(tasklimit) <= 0 && $("input#taskId").val() == '') {
+        if (isNaN(tasklimit) && $("input#taskId").val() == '') {
             toastr.info("You already have 20 tasks. To add more, edit your tasks below");
             return;
         }
@@ -38,7 +40,7 @@ $(document).ready(function(){
             const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
             if (newFlag){
                 toastr.success("You just create a task!");
-                const newElement = $('<div class="col-md-5 item btn btn-light" taskid="' + data['id'] + '">' + data['title'] + '</div>');
+                const newElement = $('<div class="col-md-5 item btn btn-light text-capitalize" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 newElement.bind("click", function(){
                     const targetId = $(this).attr("taskId");
                     $("input#taskId").val(targetId);
@@ -47,14 +49,14 @@ $(document).ready(function(){
                 });
                 $("div.task_tab").append(newElement);
                 $("span#numberTasks").html(parseInt($("span#numberTasks").html())-1);
-                if ($("span#numberTasks").html() == '0')
+                if (parseInt($("span#numberTasks").html()) <= 0)
                     $("span#numberTasks").parent().html("Your Tasks");
             }
             else {
                 toastr.success("You just update a task!");
                 $("div[taskid='"+data['id']+"']").html(data['title']);
             }
-            if (parseInt($("span#numberTasks").html()) <= 0){
+            if (isNaN($("span#numberTasks").html())){
                 $("#inputLabel").addClass('hidden');
                 $("#goRaceLabel").removeClass('hidden');
             }
