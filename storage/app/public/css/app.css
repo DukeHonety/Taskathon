@@ -55,7 +55,7 @@ button.slide-right{
     display: flex;
     align-items: center;
     background-color: #E6EEFF;
-    font-size: 24px;
+    font-size: 20px;
     margin:5px;
 }
 .taskItem{
