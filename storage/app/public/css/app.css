@@ -64,7 +64,7 @@ button.slide-right{
     overflow: hidden;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid rgba(242, 168, 153, 0.6);
+    /* border-bottom: 2px solid rgba(242, 168, 153, 0.6); */
 }
 .taskItem *{
     cursor: pointer;
@@ -80,8 +80,11 @@ button.slide-right{
 .taskItem i{
     margin-right: 10px;
     font-size: 30px;
-    color: #7D204F;
+    /* color: #7D204F; */
     opacity: 0.7;
+}
+.taskItem label{
+    line-height: 24px;
 }
 .taskItem.active label{
     text-decoration: line-through;
@@ -112,7 +115,9 @@ button.slide-right{
     width: 150px;
     height: 150px;
 }
-
+.playerprogress div.progress-bar.complete{
+    background-color: chartreuse;
+}
 .card-header button{
     position: absolute;
     top: 15px;

@@ -2,7 +2,7 @@ let raceTimer;
 $(document).ready(function(){
     $("button#taskadd").click(function(){
         const tasklimit = $("span#numberTasks").html();
-        if (parseInt(tasklimit) >= 20 && $("input#taskId").val() == '') {
+        if (parseInt(tasklimit) <= 0 && $("input#taskId").val() == '') {
             toastr.info("You already have 20 tasks. To add more, edit your tasks below");
             return;
         }
@@ -38,14 +38,23 @@ $(document).ready(function(){
             const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
             if (newFlag){
                 toastr.success("You just create a task!");
-                $("div.task_tab").append('<div class="col-md-5 item btn btn-light" taskid="' + data['id'] + '">' + data['title'] + '</div>');
-                $("span#numberTasks").html(parseInt($("span#numberTasks").html())+1);
+                const newElement = $('<div class="col-md-5 item btn btn-light" taskid="' + data['id'] + '">' + data['title'] + '</div>');
+                newElement.bind("click", function(){
+                    const targetId = $(this).attr("taskId");
+                    $("input#taskId").val(targetId);
+                    $("button#taskadd").html("Update");
+                    $("input#task").val($(this).html());
+                });
+                $("div.task_tab").append(newElement);
+                $("span#numberTasks").html(parseInt($("span#numberTasks").html())-1);
+                if ($("span#numberTasks").html() == '0')
+                    $("span#numberTasks").parent().html("Your Tasks");
             }
             else {
                 toastr.success("You just update a task!");
                 $("div[taskid='"+data['id']+"']").html(data['title']);
             }
-            if (parseInt($("span#numberTasks").html()) >= 20){
+            if (parseInt($("span#numberTasks").html()) <= 0){
                 $("#inputLabel").addClass('hidden');
                 $("#goRaceLabel").removeClass('hidden');
             }

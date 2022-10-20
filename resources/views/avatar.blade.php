@@ -17,7 +17,7 @@ $raceInfo = $gameInfo['raceInfo'];
                 <div class="form-group mt-50">
                     <h1>Enter your display name</h1>
                     <div class="col-md-8 offset-md-2">
-                        <input type="text" class="form-control text-24" name="playername" id="playername" placeholder="Input your player name" value="{{$gameInfo['playerName']}}" required autocomplete=off @error('playername') is-invalid @enderror maxlength="14"/>
+                        <input type="text" class="form-control text-24" name="playername" id="playername" placeholder="Input your player name" value="{{$gameInfo['playerName'] == '' ? Auth::user()->name : $gameInfo['playerName']}}" required autocomplete=off @error('playername') is-invalid @enderror maxlength="14"/>
                     </div>
                 </div>
                 <div class="form-group mt-50 relative">

@@ -40,6 +40,11 @@ $(document).ready(function(){
                 playerTab.find("span#name").html(player.name);
                 playerTab.find("div.progress div").css('width', "calc(" + player.complete*5+"%" );
                 playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
+                if (player.complete == 20) {
+                    playerTab.find("div.progress div").addClass('complete');
+                }
+                else
+                    playerTab.find("div.progress div").removeClass('complete');
             });
         });
     }

@@ -30,14 +30,13 @@
                 </div>
             </div>
             <div class="form-group mt-50">
-                <h1>My tasks <span id="numberTasks">{{count($tasks)}}</span>/20</h1>
+                <h1>Your Tasks @if(count($tasks) != 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
                 <div class="task_tab container row">
                     @foreach ($tasks as $key => $task)
                         <div class="col-md-5 item btn btn-light" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
-            </div>
-            
+            </div>            
         </div>
     </div>
 </div>
