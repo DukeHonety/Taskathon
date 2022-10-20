@@ -36,13 +36,13 @@
                     @auth
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('race') }}">{{ __('Race') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('avatar') }}">{{ __('Avatar') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('task') }}">{{ __('Tasks') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('race') }}">{{ __('Race') }}</a>
                         </li>
                         @if(Auth::user()->role == 1)
                         <li class="nav-item">
