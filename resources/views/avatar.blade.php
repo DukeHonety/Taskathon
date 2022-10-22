@@ -29,7 +29,7 @@ $raceInfo = $gameInfo['raceInfo'];
                     <input type="hidden" class="form-control" name="playerAvatar" id="playerAvatar" required autocomplete=off  value="{{$gameInfo['playerAvatar']}}"/>                    
                     <div class="row" style="padding:10px">
                         @foreach ($avatars as $avatar)
-                        <div class="col-sm-3 {{($avatar['used'] && $avatar['id'] != $gameInfo['playerAvatar']) ? 'hidden' : ''}}">
+                        <div class="col-sm-3 {{($avatar['used'] == 1 && $avatar['id'] != $gameInfo['playerAvatar']) ? 'hidden' : ''}}">
                             <img src="{{asset('storage/avatars/'.$avatar['url'])}}" class="avatarSlideItem {{$gameInfo['playerAvatar'] == $avatar['id'] ? 'active' : '' }}" id="avatar{{$avatar['id']}}" imgid="{{$avatar['id']}}"/>
                         </div>
                         @endforeach

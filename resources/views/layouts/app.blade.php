@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{asset('storage/css/app.css')}}" />
-    <!-- Scripts -->
-    <!-- @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js']) -->
 </head>
 <body>
     <div id="app">
