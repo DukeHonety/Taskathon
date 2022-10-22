@@ -27,7 +27,7 @@ $raceInfo = $gameInfo['raceInfo'];
                     <h2>Task List <span id="numberComplete">{{$gameInfo['completed']}}</span> / {{count($tasks)}}</h2>
                     <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
-                <div class="card-body task_tab container">
+                <div class="card-body task_tab container row">
                     @foreach ($tasks as $key => $task)
                         <div class="col-md-5 taskItem playItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
                             @if($task['status'] == 1)
