@@ -39,7 +39,7 @@ $(document).ready(function(){
             }
             const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
             if (newFlag){
-                toastr.success("You just create a task!");
+                toastr.success("You just created a task!");
                 const newElement = $('<div class="col-md-5 item btn btn-light text-capitalize" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 newElement.bind("click", function(){
                     const targetId = $(this).attr("taskId");

@@ -20,7 +20,6 @@ $(document).ready(function(){
         const cPAvatar = parseInt($("input#currentPlayerAvatar").val());
         $.get('imagestatus/all', function(data){
             data.forEach((image) => {
-                console.log(image);
                 if (parseInt(image.used) == 1 && parseInt(image.id) != cPAvatar){
                     $("img#avatar"+image.id).parent().hide();
                 }
