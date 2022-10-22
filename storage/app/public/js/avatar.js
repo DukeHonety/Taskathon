@@ -21,6 +21,7 @@ $(document).ready(function(){
         $.get('imagestatus/all', function(data){
             data.forEach((image) => {
                 if (image.used == '1' && image.id != cPAvatar){
+                    console.log(image.id, cPAvatar, image.used == '1', image.id != cPAvatar);
                     $("img#avatar"+image.id).parent().hide();
                 }
                 else
