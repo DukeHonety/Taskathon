@@ -15,11 +15,16 @@ $(document).ready(function(){
         });
     });
     $("button#restartRace").click(function(){
-        $.post('restartrace', function(data){
-            if(data)
-                toastr.success("Race is restarting...");
-            else
-                toastr.warning("Server Error");
-        });
+        if (confirm('Are you sure you want to restart race?')) {
+            const ajax_data = {
+                _token: $('input[name="_token"]').val()
+            };
+            $.post('restartrace', ajax_data, function(data){
+                if(data)
+                    toastr.success("Successfully restarted");
+                else
+                    toastr.warning("Server Error");
+            });
+          }
     });
 });
