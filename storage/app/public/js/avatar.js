@@ -6,7 +6,16 @@ $(document).ready(function(){
     
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
-        var today = new Date();
+                
+        var localDate = new Date();
+        var year  = localDate.getUTCFullYear();
+        var month = localDate.getUTCMonth();
+        var date  = localDate.getUTCDate();
+        var ptHours  = localDate.getUTCHours() - 7;
+        var minutes = localDate.getUTCMinutes();
+        var seconds = localDate.getUTCSeconds();
+        var today = new Date(year, month, date, ptHours, minutes, seconds);
+
         let betweenTime = raceTime.getTime() - today.getTime();
         if (betweenTime > 0){
             $("#countTime").html(getTimeStr(new Date(betweenTime)));

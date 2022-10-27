@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Race;
+use App\Models\Player;
+use App\Models\Task;
+use App\Models\Avata;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -34,5 +37,11 @@ class DashboardController extends Controller
         }
         else
             return false;
+    }
+    public function restartrace(){
+        // echo 'here';
+        Player::query()->truncate();
+        Task::query()->truncate();
+        Avata::select('*')->update(array('used' => 0));
     }
 }

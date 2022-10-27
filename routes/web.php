@@ -44,3 +44,4 @@ Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name(
 
 Route::get('/settings', [DashboardController::class, 'index'])->name('settings');
 Route::post('/updatestart', [DashboardController::class, 'updatestart']);
+Route::post('/restartrace', [DashboardController::class, 'restartrace']);

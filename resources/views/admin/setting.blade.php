@@ -36,6 +36,7 @@
             </div>
             <div class="my-30">
                 <button id="updateStart" class="btn btn-primary">Update</button>
+                <button id="restartRace" class="btn btn-primary">Restart</button>
             </div>
         </div>
     </div>

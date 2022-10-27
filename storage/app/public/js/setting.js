@@ -14,4 +14,12 @@ $(document).ready(function(){
                 toastr.warning("Please check date again");
         });
     });
+    $("button#restartRace").click(function(){
+        $.post('restartrace', function(data){
+            if(data)
+                toastr.success("Race is restarting...");
+            else
+                toastr.warning("Server Error");
+        });
+    });
 });
