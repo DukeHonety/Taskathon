@@ -228,4 +228,15 @@ class HomeController extends Controller
         }
         return false;
     }
+
+    public function updatetasktitle(Request $request) {
+        $taskId = $request->t_id;
+        $taskTitle = $request->t_title;
+        $tmodel = Task::find($taskId);
+        if(!$tmodel)
+            return false;
+        $tmodel->title = $taskTitle;
+        $tmodel->save();
+        return true;
+    }
 }

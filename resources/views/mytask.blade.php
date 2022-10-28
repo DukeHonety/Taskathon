@@ -39,10 +39,26 @@
                 <h1>Your Tasks @if(count($tasks) < 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
                 <div class="task_tab container row d-flex">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-12 col-sm-12 item btn btn-light text-capitalize" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-12 col-sm-12 item shadow p-3 mb-2 bg-white rounded text-capitalize modal-trigger" data-modal="taskEditorModal" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>            
+        </div>
+    </div>
+</div>
+<div id="modal-wrapper">
+    <div class="modal" id="taskEditorModal">
+        <div class="modal-sandbox"></div>
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="close-modal">&#10006;</div> 
+                <h3>Update Task</h3>
+            </div>
+            <div class="modal-body">
+                <div class="input-wrapper"></div>
+                <button type="button" class="btn btn-secondary close-modal">Close</button>
+                <button type="button" class="btn btn-primary save-modal" id="modal-submit">Save</button>
+            </div>
         </div>
     </div>
 </div>

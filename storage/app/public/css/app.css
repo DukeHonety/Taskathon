@@ -59,12 +59,10 @@ button.slide-right{
     justify-content: space-around;
 }
 .task_tab .item{
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    background-color: #E6EEFF;
     font-size: 20px;
-    margin:5px;
+    margin:10px 0px;
+    text-align: left;
+    cursor: pointer;
 }
 .taskItem{
     height: 45px;
@@ -179,7 +177,7 @@ button.slide-right{
   z-index: 900;
 }
 
-#tasklistModal .modal-sandbox {
+#modal-wrapper .modal-sandbox {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -188,7 +186,7 @@ button.slide-right{
   background: rgba(24, 25, 26, 0.3);
 }
 
-#tasklistModal .modal {
+#modal-wrapper .modal {
   display: none; 
   position: fixed;
   width: 100%;
@@ -200,7 +198,7 @@ button.slide-right{
   overflow: auto;
 }
 
-#tasklistModal .modal-box {
+#modal-wrapper .modal-box {
   position: relative;
   width: 80%;
   max-width: 920px;
@@ -210,43 +208,49 @@ button.slide-right{
   animation-timing-function: cubic-bezier(0,0,.3,1.6);
 }
 
-#tasklistModal .modal-header {
+#modal-wrapper .modal-header {
   padding: 20px 40px;
-  background: #ECEFF1;
-  color: #000000;
+  background: #242525;
+  color: #ffffff;
 }
 
-#tasklistModal .modal-body {
-  background: #f6f7f8;
+#modal-wrapper .modal-body {
+  background: #ffffff;
   padding: 20px 40px 40px 40px;
   border-bottom-left-radius: var(--bs-modal-inner-border-radius);
   border-bottom-right-radius: var(--bs-modal-inner-border-radius);
 }
 
-#tasklistModal .modal-body table{
+#modal-wrapper .modal-body table{
     width: 100%;
 }
 
-#tasklistModal .modal-body .line-num {
+#modal-wrapper .modal-body .line-num {
     width: 70px;
 }
-#tasklistModal .modal-body .task-on-modal {
+#modal-wrapper .modal-body .task-on-modal {
     width: 80%;
 }
-
+#modal-input {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  font-size: 30px;
+}
 /* Close Button */
-#tasklistModal .close-modal {
-    text-align: right;
-    cursor: pointer;
-    margin-top: 40px;
-  }
-
-  #tasklistModal button.close-modal {
-    color: black;
-    border: 1px solid black;
-  }
-  
-  /* Animation */
+#modal-wrapper .close-modal {
+  cursor: pointer;
+}
+/* #modal-wrapper .save-modal {
+  text-align: right;
+  cursor: pointer;
+  margin-top: 40px;
+} */
+/* #modal-wrapper button {
+  color: black;
+  border: 1px solid black;
+} */
+/* Animation */
   @-webkit-keyframes modalbox {
     0% {
       top: -250px; 
@@ -270,20 +274,20 @@ button.slide-right{
   }
   
   /* Aditional Styles */
-  #tasklistModal * {
+#modal-wrapper * {
     font-family: "Roboto", sans-serif;
     font-weight: normal;
-  }
+}
   
-  #tasklistModal p {
+#modal-wrapper p {
     line-height: 1.4em;
-  }
-  
+}
+ 
   /* body {
     background: #B0BEC5;
   } */
   
-  #tasklistModal .modal-trigger, button {
+/* #modal-wrapper .modal-trigger, button {
     top: 50%;
     left: 50%;
     padding: 20px 40px;
@@ -291,9 +295,11 @@ button.slide-right{
     color: #ffffff;
     border: 1px solid #ffffff;
     text-decoration: none;
-  }
-  
-  #tasklistModal .modal-trigger {
+  } */
+.input-wrapper {
+  margin: 40px 0px;
+}
+#modal-wrapper .modal-trigger {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -304,19 +310,19 @@ button.slide-right{
     transition: ease .2s;
   }
   
-  #tasklistModal .modal-trigger:hover {
+#modal-wrapper .modal-trigger:hover {
     padding: 20px 60px;
   }
 
-  #confirmIsSharing {
+#confirmIsSharing {
     margin-bottom: 40px
   }
 
-  #confirmIsSharing .form-check-label {
+#confirmIsSharing .form-check-label {
     margin-left: 20px;
   }
 
-  #taskadd {
+#taskadd {
     position: static;
     margin-left: 20px;
   }

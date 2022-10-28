@@ -41,6 +41,7 @@ Route::get('/avatar', [ HomeController::class, 'avatar' ])->name('avatar');
 Route::get('/imagestatus/all', [ HomeController::class, 'imagestatusall' ])->name('imagestatusall');
 Route::get('/imagestatus/{id}', [ HomeController::class, 'imagestatus' ])->name('imagestatus');
 Route::post('/get_tasks_by_user', [ HomeController::class, 'getTaskByUser' ]);
+Route::post('/update_task_title', [HomeController::class, 'updatetasktitle']);
 
 
 

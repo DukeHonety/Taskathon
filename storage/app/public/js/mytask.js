@@ -97,12 +97,6 @@ $(document).ready(function(){
             $("button#taskadd").html("Add");
         });
     });
-    $(".task_tab .item").click(function(){
-        const targetId = $(this).attr("taskId");
-        $("input#taskId").val(targetId);
-        $("button#taskadd").html("Update");
-        $("input#task").val($(this).html());
-    });
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
         
@@ -123,4 +117,49 @@ $(document).ready(function(){
             clearTimeout(raceTimer);
         }
     }, 1000);
+
+    //-- Handling Modal Code
+    var choosenTask = '';
+    $('div.modal-trigger').click(function() {
+        //-- Modal displaying...
+        const dataModal = $(this).attr("data-modal");
+        const taskId = $(this).attr('taskId');
+        $("#" + dataModal).css({"display":"block"});
+        $("body").css({"overflow-y": "hidden"}); //Prevent double scrollbar.
+        //-- Render modal content..
+        const currentVal = $(this).html();
+        const taskInputTag = '<input id="modal-input" class="form-control" maxlength="128" task-id="'+ taskId +'" value="'+ currentVal +'"  autofocus/>';
+        const editorModal = $("#taskEditorModal .modal-body .input-wrapper");
+        editorModal.append($(taskInputTag));
+        //-- Reserve choosen task item
+        choosenTask = $(this);                      
+    });
+    $('#modal-submit').click(function() {
+        var newVal = $('#modal-input').val();
+        const taskId = $('#modal-input').attr('task-id');
+        const ajax_data = {
+            _token: $('input[name="_token"]').val(),
+            t_id: taskId,
+            t_title: newVal
+        };
+        if(newVal !== '') {
+            console.log(ajax_data);
+            $.post('update_task_title', ajax_data, function(data){
+                if(data)
+                    toastr.success("Success!");
+                else
+                    toastr.warning("Something wrong with server");
+            });
+
+            choosenTask.html(newVal);
+            return;
+        }
+        toastr.warning('Task name is required');
+    });
+    $(".close-modal, .modal-sandbox").click(function(){
+        $(".modal").css({"display":"none"});
+        $(".modal-body .task-list").empty();
+        $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
+        $("#taskEditorModal .modal-body .input-wrapper").empty();
+    });
 });
