@@ -1,6 +1,6 @@
 let raceTimer;
 let gameTimer;
-let gamePlaying = true;
+let gamePlaying = false;
 $(document).ready(function(){
     
     raceTimer = setInterval(function() {
@@ -8,7 +8,15 @@ $(document).ready(function(){
         const racingTime = parseInt($('input#race_time').val());
         let finishTime = new Date(raceTime.getTime() + racingTime * 3600 * 1000);
 
-        var today = new Date();
+        var localDate = new Date();
+        var year  = localDate.getUTCFullYear();
+        var month = localDate.getUTCMonth();
+        var date  = localDate.getUTCDate();
+        var ptHours  = localDate.getUTCHours() - 7;
+        var minutes = localDate.getUTCMinutes();
+        var seconds = localDate.getUTCSeconds();
+        var today = new Date(year, month, date, ptHours, minutes, seconds);
+        
         let betweenStarTime = raceTime.getTime() - today.getTime();
         let betweenFinishTime = finishTime.getTime() - today.getTime();
         if (betweenStarTime > 0){
@@ -90,5 +98,50 @@ $(document).ready(function(){
 
             }
         });
+    });
+    
+    $('img.player-avatar').click(function() {
+        var user_id = $(this).attr('uid');
+        var visible = parseInt($(this).attr('visible'));
+        const ajax_data = {
+            _token: $('input[name="_token"]').val(),
+            user_id: user_id
+        }
+        if(visible !== 0) {
+            $.post('get_tasks_by_user', ajax_data, function(data) {
+                if (data) {
+                    if(data['player_info'][0].share_task != 0) {
+                        const taskModal = $("#tasklistModal .modal-body .task-list");
+                        
+                        data['current_tasks'].forEach((item, key) => {
+                            var lineNo = key + 1;
+                            var taskStatus = item.status === 1 ? 'done' : 'in progress';
+                            // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
+                            const task =    '<tr>' + 
+                                                '<td class="line-num"" tid="'+item.id+'">' + lineNo + '</td>' + 
+                                                '<td  class="task-on-modal">' + item.title + '</td>' +
+                                                '<td  class="task-status">' + taskStatus +
+                                            '</tr>'
+                            taskModal.append($(task));
+                        });
+                        var modalTitle = data['player_info'][0].name + "'s tasks";
+                        $("#tasklistModal .modal-header h3").html(modalTitle);
+                    }
+                }
+                else 
+                toastr.warning("Server says: 'You might be a scammer.'");
+            });
+            dataModal = $(this).attr("data-modal");
+            $("#" + dataModal).css({"display":"block"});
+            $("body").css({"overflow-y": "hidden"}); //Prevent double scrollbar.
+            
+            return;
+        }
+        toastr.warning("The player doesn't want to share tasks" );
+    });
+    $(".close-modal, .modal-sandbox").click(function(){
+        $(".modal").css({"display":"none"});
+        $(".modal-body .task-list").empty();
+        $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
 });

@@ -1,7 +1,38 @@
 let raceTimer;
 $(document).ready(function(){
+    $("input#isSharingTask").prop( "checked", $("input#isSharingTask").attr('status') == 1 ? true : false );
+    
+    $("input#isSharingTask").click( function(){
+        let is_share = parseInt($("input#isSharingTask").attr('status'));
+        is_share = is_share === 1 ? 0 : 1;
+        $(this).attr('status', is_share);
+
+        const ajax_data = {
+            _token: $('input[name="_token"]').val(),
+            player_id: $(this).attr("pid"),
+            is_sharing: is_share,
+        }
+
+        if( $(this).is(':checked') ) {
+            $.post('update_share_task', ajax_data, function(data){
+                if(data)
+                    toastr.success("Your tasks are sharing to everybody!");
+                else
+                    toastr.warning("Something wrong with server");
+            });
+            return;
+        }
+        $.post('update_share_task', ajax_data, function(data){
+            if(data)
+                toastr.success("The others can't see your tasks");
+            else
+                toastr.warning("Something wrong with server");
+        });
+     });
+
     if (parseInt($("span#numberTasks").html()) <= 0)
         $("span#numberTasks").parent().html("Your Tasks");
+    
     $("button#taskadd").click(function(){
         const tasklimit = $("span#numberTasks").html();
         if (isNaN(tasklimit) && $("input#taskId").val() == '') {
@@ -59,6 +90,7 @@ $(document).ready(function(){
             if (isNaN($("span#numberTasks").html())){
                 $("#inputLabel").addClass('hidden');
                 $("#goRaceLabel").removeClass('hidden');
+                $("#confirmIsSharing").removeClass('hidden');
             }
             $("input#taskId").val('');
             $("input#task").val('');
@@ -73,7 +105,16 @@ $(document).ready(function(){
     });
     raceTimer = setInterval(function() {
         const raceTime = new Date($('input#raceTime').val());
-        var today = new Date();
+        
+        var localDate = new Date();
+        var year  = localDate.getUTCFullYear();
+        var month = localDate.getUTCMonth();
+        var date  = localDate.getUTCDate();
+        var ptHours  = localDate.getUTCHours() - 7;
+        var minutes = localDate.getUTCMinutes();
+        var seconds = localDate.getUTCSeconds();
+        var today = new Date(year, month, date, ptHours, minutes, seconds);
+
         const betweenTime = raceTime.getTime() - today.getTime();
         if (betweenTime > 0)
             $("#countTime").html(getTimeStr(new Date(betweenTime)));

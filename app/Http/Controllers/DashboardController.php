@@ -39,10 +39,17 @@ class DashboardController extends Controller
             return false;
     }
     public function restartrace(Request $request){
-        // echo 'here';
         Player::query()->truncate();
         Task::query()->truncate();
         Avatar::select('*')->update(array('used' => 0));
+        return true;
+    }
+    public function updatesharetask(Request $request){
+        $id = $request->player_id;
+        $share_task = $request->is_sharing;
+        Player::find($id);
+        Player::where('id', $id)
+            ->update(['share_task' => $share_task]);
         return true;
     }
 }

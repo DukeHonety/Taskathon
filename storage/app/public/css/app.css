@@ -1,3 +1,4 @@
+/*------------- Avatar -------------*/
 .avatarSlideItem{
     width: 200px;
     max-width: 100%;
@@ -15,6 +16,14 @@
     position: relative;
     overflow:hidden;
 }
+#goPlan {
+    margin-left: 30px;
+}
+
+.avatar-s-title {
+    margin-bottom: 40px;
+}
+
 button.slide-left{
     position: absolute;
     height: 120px;
@@ -50,7 +59,6 @@ button.slide-right{
     justify-content: space-around;
 }
 .task_tab .item{
-    height: 45px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -164,3 +172,151 @@ button.slide-right{
 .ml-30{
     margin-left: 30px;
 }
+
+/*---------- Modal ---------*/
+.modal,
+.modal-box {
+  z-index: 900;
+}
+
+#tasklistModal .modal-sandbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(24, 25, 26, 0.3);
+}
+
+#tasklistModal .modal {
+  display: none; 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0,0,0);
+  background: rgba(0,0,0,.8);
+  overflow: auto;
+}
+
+#tasklistModal .modal-box {
+  position: relative;
+  width: 80%;
+  max-width: 920px;
+  margin: 100px auto;
+  animation-name: modalbox;
+  animation-duration: .4s;
+  animation-timing-function: cubic-bezier(0,0,.3,1.6);
+}
+
+#tasklistModal .modal-header {
+  padding: 20px 40px;
+  background: #ECEFF1;
+  color: #000000;
+}
+
+#tasklistModal .modal-body {
+  background: #f6f7f8;
+  padding: 20px 40px 40px 40px;
+  border-bottom-left-radius: var(--bs-modal-inner-border-radius);
+  border-bottom-right-radius: var(--bs-modal-inner-border-radius);
+}
+
+#tasklistModal .modal-body table{
+    width: 100%;
+}
+
+#tasklistModal .modal-body .line-num {
+    width: 70px;
+}
+#tasklistModal .modal-body .task-on-modal {
+    width: 80%;
+}
+
+/* Close Button */
+#tasklistModal .close-modal {
+    text-align: right;
+    cursor: pointer;
+    margin-top: 40px;
+  }
+
+  #tasklistModal button.close-modal {
+    color: black;
+    border: 1px solid black;
+  }
+  
+  /* Animation */
+  @-webkit-keyframes modalbox {
+    0% {
+      top: -250px; 
+      opacity: 0;
+    }
+    100% {
+      top: 0; 
+      opacity: 1;
+    }
+  }
+  
+  @keyframes modalbox {
+    0% {
+      top: -250px; 
+      opacity: 0;
+    }
+    100% {
+      top: 0; 
+      opacity: 1;
+    }
+  }
+  
+  /* Aditional Styles */
+  #tasklistModal * {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+  }
+  
+  #tasklistModal p {
+    line-height: 1.4em;
+  }
+  
+  /* body {
+    background: #B0BEC5;
+  } */
+  
+  #tasklistModal .modal-trigger, button {
+    top: 50%;
+    left: 50%;
+    padding: 20px 40px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    text-decoration: none;
+  }
+  
+  #tasklistModal .modal-trigger {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    transition: ease .2s;
+  }
+  
+  #tasklistModal .modal-trigger:hover {
+    padding: 20px 60px;
+  }
+
+  #confirmIsSharing {
+    margin-bottom: 40px
+  }
+
+  #confirmIsSharing .form-check-label {
+    margin-left: 20px;
+  }
+
+  #taskadd {
+    position: static;
+    margin-left: 20px;
+  }

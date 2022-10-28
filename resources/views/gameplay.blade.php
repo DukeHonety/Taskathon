@@ -54,7 +54,7 @@ $raceInfo = $gameInfo['raceInfo'];
                             <div class="info" style="margin-left:calc(<?php echo $player[
                                 'complete'
                             ] * 5; ?>% - 50px);">
-                                <img src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}"/>
+                                <img class="player-avatar" class="modal-trigger" data-modal="tasklistModal" src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}" visible="{{$player['share_task']}}" uid="{{$player['user_id']}}"/>
                                 <div id="name" style="font-size:18px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="progress">
@@ -66,6 +66,19 @@ $raceInfo = $gameInfo['raceInfo'];
             </div>
         </div>
     </div>
+</div>
+<div class="modal" id="tasklistModal">
+  <div class="modal-sandbox"></div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="close-modal">&#10006;</div> 
+      <h3></h3>
+    </div>
+    <div class="modal-body">
+        <table class="task-list"></table>
+        <button class="close-modal">Close!</button>
+    </div>
+  </div>
 </div>
 @endsection
 

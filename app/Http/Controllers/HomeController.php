@@ -211,4 +211,21 @@ class HomeController extends Controller
         $pmodel->save();
         return $taskId;
     }
+
+    public function getTaskByUser(Request $request) {
+        $userId = $request->user_id;
+        $currentPlayerInfo = Player::select('*')->where('user_id', $userId)->get();
+
+        if(count($currentPlayerInfo) != 0) {
+            if($currentPlayerInfo[0]->tasks == 20) {
+                $selectedTasks = Task::select('*')->where('user_id', $userId)->get()->toArray();
+                $selectedTasks = [
+                    'current_tasks' => Task::select('*')->where('user_id', $userId)->get()->toArray(),
+                    'player_info' => Player::select('id', 'name', 'share_task')->where('user_id', $userId)->get()
+                ];
+                return $selectedTasks;
+            }
+        }
+        return false;
+    }
 }

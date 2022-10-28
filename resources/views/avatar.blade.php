@@ -21,9 +21,9 @@ $raceInfo = $gameInfo['raceInfo'];
                     </div>
                 </div>
                 <div class="form-group mt-50 relative">
-                    <div style="position:relative">
+                    <div class="avatar-s-title d-flex justify-content-center">
                         <h1>Select your avatar</h1>
-                        <button type="button" id="goPlan" class="btn btn-primary text-24" style="position:absolute; right:0px; top:0px">Next</button>
+                        <button type="button" id="goPlan" class="btn btn-primary text-24">Next</button>
                     </div>
                     <input type="hidden" class="form-control" name="currentPlayerAvatar" id="currentPlayerAvatar" required autocomplete=off  value="{{$gameInfo['playerAvatar']}}"/>  
                     <input type="hidden" class="form-control" name="playerAvatar" id="playerAvatar" required autocomplete=off  value="{{$gameInfo['playerAvatar']}}"/>                    

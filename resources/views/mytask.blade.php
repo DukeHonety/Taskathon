@@ -18,6 +18,12 @@
             <div>
                 {{ csrf_field() }}
                 <div class="form-group my-30">
+                    <div id="confirmIsSharing" class="d-flex justify-content-center form-check <?php echo count($tasks) == 20 ? '' : 'hidden'; ?>">
+                        <input class="form-check-input" type="checkbox" value="" id="isSharingTask" pid="{{$playerInfo['id']}}" status="{{$playerInfo['share_task']}}">
+                        <label class="form-check-label" for="isSharingTask">
+                            Do you agree to share your assignment with others?
+                        </label>
+                    </div>
                     <a href="{{route('race')}}" id="goRaceLabel" class="btn btn-primary text-24 <?php echo count($tasks) == 20 ? '' : 'hidden'; ?>"><i class="fa fa-running"></i> Enter the Race</a>
                     <h1 id="inputLabel" class="<?php echo count($tasks) == 20 ? 'hidden' : ''; ?>">Enter 20 tasks to complete</h1>
                 </div>
@@ -31,9 +37,9 @@
             </div>
             <div class="form-group mt-50">
                 <h1>Your Tasks @if(count($tasks) < 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
-                <div class="task_tab container row">
+                <div class="task_tab container row d-flex">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 item btn btn-light text-capitalize" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-12 col-sm-12 item btn btn-light text-capitalize" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>            
