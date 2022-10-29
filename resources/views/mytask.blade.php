@@ -55,7 +55,7 @@
                 <h3>Update Task</h3>
             </div>
             <div class="modal-body">
-                <div class="input-wrapper"></div>
+                <div class="contents-wrapper"></div>
                 <button type="button" class="btn btn-secondary close-modal">Close</button>
                 <button type="button" class="btn btn-primary save-modal" id="modal-submit">Save</button>
             </div>

@@ -129,7 +129,7 @@ $(document).ready(function(){
         //-- Render modal content..
         const currentVal = $(this).html();
         const taskInputTag = '<input id="modal-input" class="form-control" maxlength="128" task-id="'+ taskId +'" value="'+ currentVal +'"  autofocus/>';
-        const editorModal = $("#taskEditorModal .modal-body .input-wrapper");
+        const editorModal = $("#taskEditorModal .modal-body .contents-wrapper");
         editorModal.append($(taskInputTag));
         //-- Reserve choosen task item
         choosenTask = $(this);                      
@@ -160,6 +160,6 @@ $(document).ready(function(){
         $(".modal").css({"display":"none"});
         $(".modal-body .task-list").empty();
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
-        $("#taskEditorModal .modal-body .input-wrapper").empty();
+        $("#taskEditorModal .modal-body .contents-wrapper").empty();
     });
 });

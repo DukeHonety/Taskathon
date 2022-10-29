@@ -8,7 +8,11 @@ $raceInfo = $gameInfo['raceInfo'];
 
 @section('content')
 <div class="container">
+    <canvas id="world" style="display:none"></canvas>
     <div class="row justify-content-center">
+        <div style="width:100%">
+            <button id="test-confetti" class="btn btn-primary">confetti</button>
+        </div>
         <div class="infoTab">
             <div>Total Players : {{count($players)}}</div>
             <div>Finished Players : {{$gameInfo['finished']}}</div>
@@ -25,7 +29,7 @@ $raceInfo = $gameInfo['raceInfo'];
                 {{ csrf_field() }}
                 <div class="card-header">
                     <h2>Task List <span id="numberComplete">{{$gameInfo['completed']}}</span> / {{count($tasks)}}</h2>
-                    <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
+                    <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button>
                 </div>
                 <div class="card-body task_tab container row">
                     @foreach ($tasks as $key => $task)
@@ -35,6 +39,20 @@ $raceInfo = $gameInfo['raceInfo'];
                             @else
                               <i class="far fa-square"></i>
                             @endif
+                            <!-- start confetti cannon -->
+                            <div class="icon">
+                                <div class="cannon"></div>
+                                <div class="confetti">
+                                    <svg viewBox="0 0 18 16">
+                                        <polyline points="1 10 4 7 4 5 6 1" />
+                                        <path d="M4,13 C5.33333333,9 7,7 9,7 C11,7 12.3340042,6 13.0020125,4" />
+                                        <path d="M6,15 C7.83362334,13.6666667 9.83362334,12.6666667 12,12 C14.1663767,11.3333333 15.8330433,9.66666667 17,7" />
+                                    </svg>
+                                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                                    <div class="emitter"></div>
+                                </div>
+                            </div>
+                            <!-- end confetti cannon -->
                             <label for="checkbox-{{$task['id']}}">{{$task['title']}}<span class="box"></span></label>
                         </div>
                     @endforeach
@@ -76,8 +94,10 @@ $raceInfo = $gameInfo['raceInfo'];
                 <h3></h3>
             </div>
             <div class="modal-body">
-                <table class="task-list"></table>
-                <button class="close-modal">Close!</button>
+                <div class="contents-wrapper">
+                    <table class="task-list"></table>
+                </div>
+                <button class="btn btn-primary close-modal">Close</button>
             </div>
         </div>
     </div>
@@ -86,4 +106,6 @@ $raceInfo = $gameInfo['raceInfo'];
 
 @section('script')
 <script src="{{asset('storage/js/gameplay.js')}}" ></script>
+<script src="{{asset('storage/js/confetti.js')}}" ></script>
+<script src="{{asset('storage/js/cannon.js')}}" ></script>
 @endsection
