@@ -130,8 +130,8 @@ $(document).ready(function(){
                         const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                         
                         data['current_tasks'].forEach((item, key) => {
-                            var taskStatus = item.status === 1 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
-                            var completed = item.status === 1 ? 'active' : '';
+                            var taskStatus = item.status == 1 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+                            var completed = item.status == 1 ? 'active' : '';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
                             
                             const task =    '<div class="col-md-6 col-sm-6" style="display: flex"><span  class="task-status">' + taskStatus + '</span>' +
