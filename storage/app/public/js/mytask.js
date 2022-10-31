@@ -71,12 +71,11 @@ $(document).ready(function(){
             const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
             if (newFlag){
                 toastr.success("You just created a task!");
-                const newElement = $('<div class="col-md-5 item btn btn-light text-capitalize" taskid="' + data['id'] + '">' + data['title'] + '</div>');
+                const newElement = $('<div class="col-md-12 col-sm-12 item shadow p-3 mb-2 bg-white rounded text-capitalize modal-trigger" data-modal="taskEditorModal" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 newElement.bind("click", function(){
-                    const targetId = $(this).attr("taskId");
-                    $("input#taskId").val(targetId);
-                    $("button#taskadd").html("Update");
-                    $("input#task").val($(this).html());
+                    const taskId = $(this).attr("taskId");
+                    const dataModal = $(this).attr("data-modal");
+                    updateModalDisplyer(dataModal, taskId, data['title']);
                 });
                 $("div.task_tab").append(newElement);
                 $("span#numberTasks").html(parseInt($("span#numberTasks").html())-1);
@@ -120,23 +119,29 @@ $(document).ready(function(){
 
     //-- Handling Modal Code
     var choosenTask = '';
-    $('div.modal-trigger').click(function() {
-        //-- Modal displaying...
-        const dataModal = $(this).attr("data-modal");
-        const taskId = $(this).attr('taskId');
+    function updateModalDisplyer(dataModal, taskId, currentVal) {
         $("#" + dataModal).css({"display":"block"});
         $("body").css({"overflow-y": "hidden"}); //Prevent double scrollbar.
         //-- Render modal content..
+        
+        // const taskInputTag = '<input id="modal-input" class="form-control" maxlength="128" task-id="'+ taskId +'" value="'+ currentVal +'"  autofocus/>';
+        const taskTitleInput = $("#" + dataModal).find('#modal-input');
+        taskTitleInput.attr('taskId', taskId);
+        taskTitleInput.val(currentVal);
+        
+        choosenTask = taskId;
+        //-- Reserve choosen task item                
+    }
+    $('div.task_tab .item').click(function(e) {
+        //-- Modal displaying...
+        const dataModal = $(this).attr("data-modal");
+        const taskId = $(this).attr('taskId');
         const currentVal = $(this).html();
-        const taskInputTag = '<input id="modal-input" class="form-control" maxlength="128" task-id="'+ taskId +'" value="'+ currentVal +'"  autofocus/>';
-        const editorModal = $("#taskEditorModal .modal-body .contents-wrapper");
-        editorModal.append($(taskInputTag));
-        //-- Reserve choosen task item
-        choosenTask = $(this);                      
+        updateModalDisplyer(dataModal, taskId, currentVal);      
     });
     $('#modal-submit').click(function() {
         var newVal = $('#modal-input').val();
-        const taskId = $('#modal-input').attr('task-id');
+        const taskId = $('#modal-input').attr('taskId');
         const ajax_data = {
             _token: $('input[name="_token"]').val(),
             t_id: taskId,
@@ -151,7 +156,7 @@ $(document).ready(function(){
                     toastr.warning("Something wrong with server");
             });
 
-            choosenTask.html(newVal);
+            $('div.task_tab .item[taskId="'+ choosenTask +'"]').html(newVal);
             return;
         }
         toastr.warning('Task name is required');
@@ -160,6 +165,5 @@ $(document).ready(function(){
         $(".modal").css({"display":"none"});
         $(".modal-body .task-list").empty();
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
-        $("#taskEditorModal .modal-body .contents-wrapper").empty();
     });
 });

@@ -65,10 +65,7 @@ button.slide-right{
     cursor: pointer;
 }
 .taskItem{
-    height: 45px;
-    overflow: hidden;
     display: flex;
-    align-items: center;
     /* border-bottom: 2px solid rgba(242, 168, 153, 0.6); */
 }
 .taskItem *{
@@ -93,6 +90,7 @@ button.slide-right{
 }
 .taskItem.active label{
     text-decoration: line-through;
+    margin-left: 10px;
 }
 
 .infoTab{
@@ -109,7 +107,7 @@ button.slide-right{
     padding: 0 0 56px 0;
 }
 .playerprogress .info{
-    width:100px;
+    width: 150px;
     font-size: 12px;
     display: flex;
     flex-direction: column;
@@ -117,7 +115,7 @@ button.slide-right{
     cursor:pointer;
 }
 .playerprogress .info img{
-    width: 40px;
+    width: 150px;
     height: auto;
 }
 .playerprogress div.progress-bar.complete{
@@ -206,14 +204,15 @@ button.slide-right{
 }
 
 #modal-wrapper .modal-header {
-  padding: 20px 40px;
-  background: #1689d6;
-  color: #ffffff;
+  border-bottom: 0px;
+  padding: 20px 40px 0px;
+  background: #ffffff;
+  color: black;
 }
 
 #modal-wrapper .modal-body {
   background: #ffffff;
-  padding: 20px 40px 40px 40px;
+  padding: 10px 20px 20px;
   border-bottom-left-radius: var(--bs-modal-inner-border-radius);
   border-bottom-right-radius: var(--bs-modal-inner-border-radius);
 }
@@ -230,9 +229,8 @@ button.slide-right{
 }
 #modal-input {
   width: 100%;
-  height: 60px;
   padding: 10px;
-  font-size: 30px;
+  font-size: 20px;
 }
 /* Close Button */
 #modal-wrapper .close-modal {
@@ -274,6 +272,7 @@ button.slide-right{
 #modal-wrapper * {
     font-family: "Roboto", sans-serif;
     font-weight: normal;
+    overflow-y: auto;
 }
   
 #modal-wrapper p {
@@ -294,7 +293,7 @@ button.slide-right{
     text-decoration: none;
   } */
 .contents-wrapper {
-  margin: 40px 0px;
+  margin: 10px 0px;
 }
 #modal-wrapper .modal-trigger {
     position: absolute;
@@ -312,13 +311,16 @@ button.slide-right{
   }
 
 #confirmIsSharing {
-    margin-bottom: 40px
+    margin-bottom: 40px;
   }
 
 #confirmIsSharing .form-check-label {
     margin-left: 20px;
-  }
-
+    cursor: pointer;
+}
+#confirmIsSharing .form-check-input {
+  cursor: pointer;
+}
 #taskadd {
     position: static;
     margin-left: 20px;
@@ -530,11 +532,8 @@ button.slide-right{
   position: relative;
   width: 100%;
 }
-.playerprogress .roadmap {
-  padding-top: 64px;
-}
 .playerprogress .ProgressBar-step:before, .ProgressBar-step:after {
-  content: "";
+  /* content: ""; */
   height: 0.5em;
   background-color: #9f9fa3;
   position: absolute;

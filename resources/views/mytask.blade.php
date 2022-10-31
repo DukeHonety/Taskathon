@@ -29,7 +29,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="hidden" class="form-control" name="taskId" id="taskId" value=""/>
-                    <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus maxlength="128" style="text-transform:capitalize;" />
+                    <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus maxlength="80" style="text-transform:capitalize;" />
                     <div class="input-group-append">
                         <button type="button" id="taskadd" class="btn btn-outline-secondary text-24">Add</button>
                     </div>
@@ -39,7 +39,7 @@
                 <h1>Your Tasks @if(count($tasks) < 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
                 <div class="task_tab container row d-flex">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-12 col-sm-12 item shadow p-3 mb-2 bg-white rounded text-capitalize modal-trigger" data-modal="taskEditorModal" taskId="{{$task['id']}}">{{$task['title']}}</div>
+                        <div class="col-md-12 col-sm-12 item shadow p-3 mb-2 bg-white rounded text-capitalize" data-modal="taskEditorModal" taskId="{{$task['id']}}">{{$task['title']}}</div>
                     @endforeach
                 </div>
             </div>            
@@ -51,12 +51,14 @@
         <div class="modal-sandbox"></div>
         <div class="modal-box">
             <div class="modal-header">
-                <div class="close-modal">&#10006;</div> 
                 <h3>Update Task</h3>
+                <div class="close-modal">&#10006;</div> 
             </div>
             <div class="modal-body">
-                <div class="contents-wrapper"></div>
-                <button type="button" class="btn btn-secondary close-modal">Close</button>
+                <div class="contents-wrapper">
+                    <input id="modal-input" class="form-control" maxlength="80" taskId="" autofocus/>
+                </div>
+                <!-- <button type="button" class="btn btn-secondary close-modal">Close</button> -->
                 <button type="button" class="btn btn-primary save-modal" id="modal-submit">Save</button>
             </div>
         </div>

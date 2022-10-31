@@ -46,9 +46,10 @@ $(document).ready(function(){
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
                 let divInfo = $(playerTab).children('.info');
                 
-                let lastPos = playerTab.find('li[position="' + (player.complete) + '"]').position();
-                divInfo.css('position','absolute');
-                divInfo.css('left', lastPos.left + 7);
+                // let lastPos = playerTab.find('li[position="' + (player.complete) + '"]').position();
+                playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
+                playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
+                divInfo.css('margin-left', player.complete);
 
                 playerTab.find("span#name").html(player.name);
                 // render progress bar
@@ -130,17 +131,14 @@ $(document).ready(function(){
             $.post('get_tasks_by_user', ajax_data, function(data) {
                 if (data) {
                     if(data['player_info'][0].share_task != 0) {
-                        const taskModal = $("#tasklistModal .modal-body .task-list");
+                        const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                         
                         data['current_tasks'].forEach((item, key) => {
-                            var lineNo = key + 1;
-                            var taskStatus = item.status === 1 ? 'done' : 'in progress';
+                            var taskStatus = item.status === 1 ? '&#9733;' : '&#9734;';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
-                            const task =    '<tr>' + 
-                                                '<td class="line-num"" tid="'+item.id+'">' + lineNo + '</td>' + 
-                                                '<td  class="task-on-modal">' + item.title + '</td>' +
-                                                '<td  class="task-status">' + taskStatus +
-                                            '</tr>'
+                            
+                            const task =    '<div class="col-md-6 col-sm-6"><span  class="task-status">' + taskStatus + '</span>' +
+                                            '<span  class="task-on-modal">' + item.title + '</span></div>';
                             taskModal.append($(task));
                         });
                         var modalTitle = data['player_info'][0].name + "'s tasks";
@@ -160,7 +158,7 @@ $(document).ready(function(){
     });
     $(".close-modal, .modal-sandbox").click(function(){
         $(".modal").css({"display":"none"});
-        $(".modal-body .task-list").empty();
+        $(".modal-body .contents-wrapper").empty();
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
     function confettiDisp() {
@@ -171,8 +169,5 @@ $(document).ready(function(){
         setTimeout(function() { 
             $('canvas').css(cssForCanvasOff);
         }, 3000);
-    }
-    function renderProgressBar() {
-        
     }
 });

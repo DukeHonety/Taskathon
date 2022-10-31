@@ -31,12 +31,12 @@ $roadmaps = 20;
                 </div>
                 <div class="card-body task_tab container row">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-5 taskItem playItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
-                            @if($task['status'] == 1)
+                        <div class="col-md-6 taskItem playItem {{$task['status'] == 1 ? 'active' : ''}}" taskid="{{$task['id']}}">
+                            <!-- @if($task['status'] == 1)
                               <i class="far fa-check-square"></i>
                             @else
                               <i class="far fa-square"></i>
-                            @endif
+                            @endif -->
                             <!-- start confetti cannon -->
                             <div class="icon">
                                 <div class="cannon"></div>
@@ -68,8 +68,8 @@ $roadmaps = 20;
                         ?>
                         <div class="playerprogress" playerId="{{$player['id']}}" completedTasks="{{ $player['complete'] }}">
                             <div class="info">
-                                <div id="name" style="font-size:15px; width:150px; text-align: center;">{{$player['name']}}</div>
                                 <img class="player-avatar modal-trigger" data-modal="tasklistModal" src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}" visible="{{$player['share_task']}}" uid="{{$player['user_id']}}"/>
+                                <div id="name" style="font-size:15px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="roadmap">
                                 <div class="wrapper">
@@ -97,14 +97,13 @@ $roadmaps = 20;
         <div class="modal-sandbox"></div>
         <div class="modal-box">
             <div class="modal-header">
-                <div class="close-modal">&#10006;</div> 
                 <h3></h3>
+                <div class="close-modal">&#10006;</div> 
             </div>
             <div class="modal-body">
-                <div class="contents-wrapper">
-                    <table class="task-list"></table>
+                <div class="row contents-wrapper">
                 </div>
-                <button class="btn btn-primary close-modal">Close</button>
+                <!-- <button class="btn btn-primary close-modal">Close</button> -->
             </div>
         </div>
     </div>
@@ -113,6 +112,6 @@ $roadmaps = 20;
 
 @section('script')
 <script src="{{asset('storage/js/gameplay.js')}}" ></script>
-<!-- <script src="{{asset('storage/js/confetti.js')}}" ></script> -->
+<script src="{{asset('storage/js/confetti.js')}}" ></script>
 <!-- <script src="{{asset('storage/js/cannon.js')}}" ></script> -->
 @endsection
