@@ -13,7 +13,7 @@ $roadmaps = 20;
     <div class="row justify-content-center">
         <div class="infoTab">
             <div>Total Players : {{count($players)}}</div>
-            <div>Finished Players : {{$gameInfo['finished']}}</div>
+            <div>Finished Players : <span id="finished">{{$gameInfo['finished']}}</span></div>
         </div>
         <div class="col-md-10 text-center">
             <div class="mt-50">

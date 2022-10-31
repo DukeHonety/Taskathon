@@ -130,11 +130,12 @@ $(document).ready(function(){
                         const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                         
                         data['current_tasks'].forEach((item, key) => {
-                            var taskStatus = item.status === 1 ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+                            var taskStatus = item.status === 1 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+                            var completed = item.status === 1 ? 'active' : '';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
                             
                             const task =    '<div class="col-md-6 col-sm-6" style="display: flex"><span  class="task-status">' + taskStatus + '</span>' +
-                                            '<div  class="task-on-modal" style="margin-left: 10px;">' + item.title + '</div></div>';
+                                            '<div  class="task-on-modal ' + completed + '" style="margin-left: 10px;">' + item.title + '</div></div>';
                             taskModal.append($(task));
                         });
                         var modalTitle = data['player_info'][0].name + "'s tasks";

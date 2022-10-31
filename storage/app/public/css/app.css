@@ -244,6 +244,9 @@ button.slide-right{
 #modal-wrapper .modal-body .task-on-modal {
     width: 80%;
 }
+#modal-wrapper .modal-body .task-on-modal.active {
+  text-decoration: line-through;
+}
 #modal-input {
   width: 100%;
   padding: 10px;
@@ -286,11 +289,11 @@ button.slide-right{
   }
   
   /* Aditional Styles */
-#modal-wrapper * {
+/* #modal-wrapper * {
     font-family: "Roboto", sans-serif;
     font-weight: normal;
     overflow-y: auto;
-}
+} */
   
 #modal-wrapper p {
     line-height: 1.4em;
