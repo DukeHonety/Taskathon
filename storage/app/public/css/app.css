@@ -106,8 +106,7 @@ button.slide-right{
     padding: 20px 75px;
 }
 .playerprogress{
-    margin:10px;
-    
+    padding: 0 0 56px 0;
 }
 .playerprogress .info{
     width:100px;
@@ -118,8 +117,8 @@ button.slide-right{
     cursor:pointer;
 }
 .playerprogress .info img{
-    width: 150px;
-    height: 150px;
+    width: 40px;
+    height: auto;
 }
 .playerprogress div.progress-bar.complete{
     background-color: chartreuse;
@@ -327,9 +326,9 @@ button.slide-right{
 
 /*------------------------- confetti css -------------------------*/
 .taskItem {
-  --background: #1e2235;
-  --color: #f6f8ff;
-  --shadow: rgba(0, 9, 61, .24);
+  /* --background: #1e2235; */
+  /* --color: #f6f8ff; */
+  /* --shadow: rgba(0, 9, 61, .24); */
   --cannon-dark: #a6accd;
   --cannon-light: #f6f8ff;
   --cannon-shadow: rgba(13, 15, 24, .9);
@@ -338,7 +337,7 @@ button.slide-right{
   --confetti-3: #ffff04;
   --confetti-4: #4af2fd;
   --z-before: -6;
-  display: block;
+  /* display: block; */
   outline: none;
   cursor: pointer;
   position: relative;
@@ -515,4 +514,79 @@ button.slide-right{
   --cannon-shadow: rgba(13, 15, 24, .2);
   --cannon-dark: #d1d6ee;
   --cannon-light: #fff;
+}
+
+/*------------- Progressbar style --------------*/
+.playerprogress .ProgressBar {
+  margin: 0 auto;
+  list-style: none;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 32px;
+}
+.playerprogress .ProgressBar-step {
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+.playerprogress .roadmap {
+  padding-top: 64px;
+}
+.playerprogress .ProgressBar-step:before, .ProgressBar-step:after {
+  content: "";
+  height: 0.5em;
+  background-color: #9f9fa3;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  left: -50%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.25s ease-out;
+}
+.playerprogress .ProgressBar-step:first-child:before, .ProgressBar-step:first-child:after {
+  display: none;
+}
+.playerprogress .ProgressBar-step:after {
+  background-color: #00637c;
+  width: 0%;
+}
+.playerprogress .ProgressBar-step.is-complete + .ProgressBar-step.is-current:after, .ProgressBar-step.is-complete + .ProgressBar-step.is-complete:after {
+  width: 100%;
+}
+.playerprogress .ProgressBar-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: #9f9fa3;
+  fill: #9f9fa3;
+  border-radius: 50%;
+  padding: 0.5em;
+  max-width: 100%;
+  z-index: 10;
+  position: relative;
+  transition: all 0.25s ease-out;
+}
+.playerprogress .is-current .ProgressBar-icon {
+  fill: #00637c;
+  background-color: #00637c;
+}
+.playerprogress .is-complete .ProgressBar-icon {
+  fill: #dbf1ff;
+  background-color: #00637c;
+}
+.playerprogress .ProgressBar-stepLabel {
+  display: block;
+  text-transform: uppercase;
+  color: #9f9fa3;
+  position: absolute;
+  padding-top: 0.5em;
+  width: 100%;
+  transition: all 0.25s ease-out;
+}
+.playerprogress .is-current > .ProgressBar-stepLabel, .is-complete > .ProgressBar-stepLabel {
+  color: #00637c;
+}
+.playerprogress .wrapper {
+  font-size: 16px;
 }

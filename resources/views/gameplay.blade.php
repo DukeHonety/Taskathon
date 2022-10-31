@@ -3,6 +3,7 @@ $tasks = $gameInfo['tasks'];
 $players = $gameInfo['players'];
 $currentPlayer = $gameInfo['userInfo'];
 $raceInfo = $gameInfo['raceInfo'];
+$roadmaps = 20;
 ?>
 @extends('layouts.app')
 
@@ -10,9 +11,6 @@ $raceInfo = $gameInfo['raceInfo'];
 <div class="container">
     <canvas id="world" style="display:none"></canvas>
     <div class="row justify-content-center">
-        <div style="width:100%">
-            <button id="test-confetti" class="btn btn-primary">confetti</button>
-        </div>
         <div class="infoTab">
             <div>Total Players : {{count($players)}}</div>
             <div>Finished Players : {{$gameInfo['finished']}}</div>
@@ -29,7 +27,7 @@ $raceInfo = $gameInfo['raceInfo'];
                 {{ csrf_field() }}
                 <div class="card-header">
                     <h2>Task List <span id="numberComplete">{{$gameInfo['completed']}}</span> / {{count($tasks)}}</h2>
-                    <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button>
+                    <!-- <button class="btn btn-primary" id="minimize"><i class="fa fa-minus"></i></button> -->
                 </div>
                 <div class="card-body task_tab container row">
                     @foreach ($tasks as $key => $task)
@@ -68,15 +66,24 @@ $raceInfo = $gameInfo['raceInfo'];
                         <?php
                             $completed = $player['complete'] == 20 ? 'complete' : '';
                         ?>
-                        <div class="playerprogress" playerId="{{$player['id']}}">
-                            <div class="info" style="margin-left:calc(<?php echo $player[
-                                'complete'
-                            ] * 5; ?>% - 50px);">
+                        <div class="playerprogress" playerId="{{$player['id']}}" completedTasks="{{ $player['complete'] }}">
+                            <div class="info">
+                                <div id="name" style="font-size:15px; width:150px; text-align: center;">{{$player['name']}}</div>
                                 <img class="player-avatar modal-trigger" data-modal="tasklistModal" src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}" visible="{{$player['share_task']}}" uid="{{$player['user_id']}}"/>
-                                <div id="name" style="font-size:18px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped {{$completed}}" role="progressbar" style="width: <?php echo $player['complete'] * 5; ?>%;" aria-valuenow="{{$player['complete']*5}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="roadmap">
+                                <div class="wrapper">
+                                    <ol class="ProgressBar">
+                                        <?php
+                                            for ($x = 0; $x < $roadmaps; $x++) {
+                                            echo '<li class="ProgressBar-step" position="'. $x .'">
+                                                    <svg class="ProgressBar-icon"><use xlink:href="#checkmark-bold"/></svg>
+                                                    <span class="ProgressBar-stepLabel">'. $x + 1 . '</span>
+                                                </li>';
+                                            }
+                                        ?>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -106,6 +113,6 @@ $raceInfo = $gameInfo['raceInfo'];
 
 @section('script')
 <script src="{{asset('storage/js/gameplay.js')}}" ></script>
-<script src="{{asset('storage/js/confetti.js')}}" ></script>
-<script src="{{asset('storage/js/cannon.js')}}" ></script>
+<!-- <script src="{{asset('storage/js/confetti.js')}}" ></script> -->
+<!-- <script src="{{asset('storage/js/cannon.js')}}" ></script> -->
 @endsection
