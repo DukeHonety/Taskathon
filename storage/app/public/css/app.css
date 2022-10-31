@@ -107,25 +107,32 @@ button.slide-right{
 .gameprogress{
     text-align: left;
     padding: 20px 75px;
-}
-.playerprogress{
+  }
+  .playerprogress{
     padding: 0 0 56px 0;
-}
-.playerprogress .rail {
-  border: 1px solid red;
-  padding: 0px 48px;
+    position: relative;
+    background-image: url('../avatars/finish_line.jpg');
+    background-repeat: repeat-y;
+    background-position: right;
 }
 .playerprogress .info{
-    width: 150px;
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor:pointer;
+  width: 75px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor:pointer;
+  position: absolute;
+}
+.playerprogress .roadmap {
+  padding-top: 29px;
 }
 .playerprogress .info img{
-    width: 150px;
+    width: 75px;
     height: auto;
+}
+.playerprogress .info div#name {
+  background-color: white;
 }
 .playerprogress div.progress-bar.complete{
     background-color: chartreuse;
@@ -566,7 +573,7 @@ button.slide-right{
 .playerprogress .ProgressBar-icon {
   width: 1.5em;
   height: 1.5em;
-  background-color: #9f9fa3;
+  background-color: #769dc5;
   fill: #9f9fa3;
   border-radius: 50%;
   padding: 0.5em;
@@ -581,7 +588,8 @@ button.slide-right{
 }
 .playerprogress .is-complete .ProgressBar-icon {
   fill: #dbf1ff;
-  background-color: #00637c;
+  /* background-color: #00637c; */
+  display: none;
 }
 .playerprogress .ProgressBar-stepLabel {
   display: block;

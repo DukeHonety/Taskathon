@@ -45,12 +45,11 @@ $(document).ready(function(){
             data.forEach((player) => {
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
                 let divInfo = playerTab.find('.info');
-                // let lastPos = playerTab.find('li[position="' + (player.complete) + '"]').position();
-                // playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
-                var taskCompletence = player.complete;
-                var imagePos = player.complete < 1 ? 1 : player.complete
 
-                divInfo.css('margin-left', "calc(" + (imagePos*5 - 2.5) + "% - 75px)");
+                var taskCompletence = player.complete;
+                // var imagePos = player.complete < 1 ? 1 : player.complete
+
+                divInfo.css('margin-left', "calc(" + (taskCompletence*5 - 2.5) + "% - 50px)");
 
                 playerTab.find("span#name").html(player.name);
                 // render progress bar
@@ -131,11 +130,11 @@ $(document).ready(function(){
                         const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                         
                         data['current_tasks'].forEach((item, key) => {
-                            var taskStatus = item.status === 1 ? '&#9733;' : '&#9734;';
+                            var taskStatus = item.status === 1 ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
                             
-                            const task =    '<div class="col-md-6 col-sm-6"><span  class="task-status">' + taskStatus + '</span>' +
-                                            '<span  class="task-on-modal">' + item.title + '</span></div>';
+                            const task =    '<div class="col-md-6 col-sm-6" style="display: flex"><span  class="task-status">' + taskStatus + '</span>' +
+                                            '<div  class="task-on-modal" style="margin-left: 10px;">' + item.title + '</div></div>';
                             taskModal.append($(task));
                         });
                         var modalTitle = data['player_info'][0].name + "'s tasks";

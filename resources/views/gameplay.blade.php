@@ -112,5 +112,5 @@ $roadmaps = 20;
 @section('script')
 <script src="{{asset('storage/js/gameplay.js')}}" ></script>
 <script src="{{asset('storage/js/confetti.js')}}" ></script>
-<!-- <script src="{{asset('storage/js/cannon.js')}}" ></script> -->
+<script src="{{asset('storage/js/cannon.js')}}" ></script>
 @endsection

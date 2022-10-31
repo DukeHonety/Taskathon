@@ -34,6 +34,7 @@ $(document).ready(function(){
         $("span#numberTasks").parent().html("Your Tasks");
     
     $("button#taskadd").click(function(){
+        $("input#task").focus();
         const tasklimit = $("span#numberTasks").html();
         if (isNaN(tasklimit) && $("input#taskId").val() == '') {
             toastr.info("You already have 20 tasks. To add more, edit your tasks below");
