@@ -48,9 +48,10 @@ $(document).ready(function(){
                 // let lastPos = playerTab.find('li[position="' + (player.complete) + '"]').position();
                 // playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
                 var taskCompletence = player.complete;
+                var imagePos = player.complete < 1 ? 1 : player.complete
                 console.log(player.complete);
 
-                divInfo.css('margin-left', "calc(" + taskCompletence*5 + "% - 65px)");
+                divInfo.css('margin-left', "calc(" + (imagePos*5 - 2.5) + "% - 75px)");
 
                 playerTab.find("span#name").html(player.name);
                 // render progress bar

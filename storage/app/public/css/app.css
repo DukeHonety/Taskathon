@@ -530,11 +530,11 @@ button.slide-right{
 /*------------- Progressbar style --------------*/
 .playerprogress .ProgressBar {
   margin: 0 auto;
+  padding: 0px;
   list-style: none;
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding-right: 32px;
 }
 .playerprogress .ProgressBar-step {
   text-align: center;
