@@ -87,12 +87,17 @@ button.slide-right{
 }
 .taskItem label{
     line-height: 24px;
+    margin-left: 10px;
 }
 .taskItem.active label{
     text-decoration: line-through;
-    margin-left: 10px;
 }
-
+.taskItem .icon {
+  opacity: 0.2;
+}
+.taskItem.active .icon {
+  opacity: 1;
+}
 .infoTab{
     display: flex;
     justify-content: space-around;
@@ -105,6 +110,10 @@ button.slide-right{
 }
 .playerprogress{
     padding: 0 0 56px 0;
+}
+.playerprogress .rail {
+  border: 1px solid red;
+  padding: 0px 48px;
 }
 .playerprogress .info{
     width: 150px;
@@ -332,7 +341,7 @@ button.slide-right{
   /* --color: #f6f8ff; */
   /* --shadow: rgba(0, 9, 61, .24); */
   --cannon-dark: #a6accd;
-  --cannon-light: #f6f8ff;
+  --cannon-light: #255cdc;
   --cannon-shadow: rgba(13, 15, 24, .9);
   --confetti-1: #892ab8;
   --confetti-2: #ea4c89;

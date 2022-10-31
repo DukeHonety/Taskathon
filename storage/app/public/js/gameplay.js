@@ -44,28 +44,24 @@ $(document).ready(function(){
         $.get('gamestatus', function(data){
             data.forEach((player) => {
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
-                let divInfo = $(playerTab).children('.info');
-                
+                let divInfo = playerTab.find('.info');
                 // let lastPos = playerTab.find('li[position="' + (player.complete) + '"]').position();
-                playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
-                playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
-                divInfo.css('margin-left', player.complete);
+                // playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
+                var taskCompletence = player.complete;
+                console.log(player.complete);
+
+                divInfo.css('margin-left', "calc(" + taskCompletence*5 + "% - 65px)");
 
                 playerTab.find("span#name").html(player.name);
                 // render progress bar
-                var taskCompletence = player.complete;
                 console.log('taskCompletence:', taskCompletence);
                 var milestones = playerTab.find("li");
+                playerTab.find('li').removeClass('is-complete');
                 if(taskCompletence !== 0 || taskCompletence !== null) {
                     for(let index = 0; index < taskCompletence; index++) {
                         $(milestones[index]).addClass("is-complete");
                     }
-                    for(let milestones; milestones < taskCompletence; milestones--) {
-                        $(milestones[index]).removeClass("is-complete");
-                    }
                 }
-                // playerTab.find("div.progress div").css('width', "calc(" + player.complete*5+"%" );
-                // playerTab.find("div.progress div").attr('aria-valuenow', player.complete*5);
                 if (player.complete == 20) {
                     playerTab.find("div.progress div").addClass('complete');
                 }
@@ -92,7 +88,6 @@ $(document).ready(function(){
 
         $.post('/updatetask', ajax_data, function(result){
             if(parseInt(result) > 0){
-                getProgress();
                 const currentTask = $(".taskItem[taskid='"+result+"']");
                 const numberComplete = $("span#numberComplete");
                 if (status == 1){
@@ -100,12 +95,14 @@ $(document).ready(function(){
                     currentTask.find("i").addClass('fa-check-square');
                     currentTask.find("i").removeClass('fa-square');
                     numberComplete.html(parseInt(numberComplete.html())+1);
+                    getProgress();
                 }
                 else{
                     currentTask.removeClass('active');
                     currentTask.find("i").addClass('fa-square');
                     currentTask.find("i").removeClass('fa-check-square');
                     numberComplete.html(parseInt(numberComplete.html())-1);
+                    getProgress();
                 }
                 if(parseInt(numberComplete.html()) == 20){
                     toastr.success("Congratulation! You just finish all tasks");

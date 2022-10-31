@@ -46,7 +46,7 @@ $roadmaps = 20;
                                         <path d="M4,13 C5.33333333,9 7,7 9,7 C11,7 12.3340042,6 13.0020125,4" />
                                         <path d="M6,15 C7.83362334,13.6666667 9.83362334,12.6666667 12,12 C14.1663767,11.3333333 15.8330433,9.66666667 17,7" />
                                     </svg>
-                                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                                    <!-- <i></i><i></i><i></i><i></i><i></i><i></i> -->
                                     <div class="emitter"></div>
                                 </div>
                             </div>
@@ -78,7 +78,6 @@ $roadmaps = 20;
                                             for ($x = 0; $x < $roadmaps; $x++) {
                                             echo '<li class="ProgressBar-step" position="'. $x .'">
                                                     <svg class="ProgressBar-icon"><use xlink:href="#checkmark-bold"/></svg>
-                                                    <span class="ProgressBar-stepLabel">'. $x + 1 . '</span>
                                                 </li>';
                                             }
                                         ?>
