@@ -1,5 +1,4 @@
 // import Physics2DPlugin from 'physics2d';
-require('physics2d');
 gsap.registerPlugin(Physics2DPlugin);
 
 document.querySelectorAll('.button').forEach(function (button) {
