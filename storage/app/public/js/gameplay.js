@@ -49,13 +49,11 @@ $(document).ready(function(){
                 // playerTab.find("div.progress ol").css('width', "calc(" + player.complete*5+"%" );
                 var taskCompletence = player.complete;
                 var imagePos = player.complete < 1 ? 1 : player.complete
-                console.log(player.complete);
 
                 divInfo.css('margin-left', "calc(" + (imagePos*5 - 2.5) + "% - 75px)");
 
                 playerTab.find("span#name").html(player.name);
                 // render progress bar
-                console.log('taskCompletence:', taskCompletence);
                 var milestones = playerTab.find("li");
                 playerTab.find('li').removeClass('is-complete');
                 if(taskCompletence !== 0 || taskCompletence !== null) {
@@ -129,6 +127,7 @@ $(document).ready(function(){
             $.post('get_tasks_by_user', ajax_data, function(data) {
                 if (data) {
                     if(data['player_info'][0].share_task != 0) {
+                        $(".modal-body .contents-wrapper").empty();
                         const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                         
                         data['current_tasks'].forEach((item, key) => {
@@ -156,7 +155,6 @@ $(document).ready(function(){
     });
     $(".close-modal, .modal-sandbox").click(function(){
         $(".modal").css({"display":"none"});
-        $(".modal-body .contents-wrapper").empty();
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
     function confettiDisp() {

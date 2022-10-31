@@ -57,7 +57,6 @@ $(document).ready(function(){
                 duplicated = true;
             }
         });
-        console.log(duplicated);
         if (duplicated){
             toastr.warning("Same task is already existed");
             return;
@@ -148,7 +147,6 @@ $(document).ready(function(){
             t_title: newVal
         };
         if(newVal !== '') {
-            console.log(ajax_data);
             $.post('update_task_title', ajax_data, function(data){
                 if(data)
                     toastr.success("Success!");
