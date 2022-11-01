@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6 offset-md-4">
+                        <div class="col-md-6 offset-md-4 d-flex justify-content-between">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -47,6 +47,12 @@
                                     {{ __('Remember Me') }}
                                 </label>
                             </div>
+                            <!-- <a href="">{{ __('Forgot password?') }}</a> -->
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
                         </div>
                     </div>
 
@@ -56,11 +62,6 @@
                                 {{ __('Login') }}
                             </button>
                             <a class="btn btn-primary" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
-                            <!-- @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif -->
                         </div>
                     </div>
                 </form>
