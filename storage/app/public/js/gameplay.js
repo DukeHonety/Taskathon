@@ -42,6 +42,7 @@ $(document).ready(function(){
         if (!gamePlaying)
             clearTimeout(gameTimer);
         $.get('gamestatus', function(data){
+            let finishedPlayers = 0;
             data.forEach((player) => {
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
                 let divInfo = playerTab.find('.info');
@@ -62,10 +63,12 @@ $(document).ready(function(){
                 }
                 if (player.complete == 20) {
                     playerTab.find("div.progress div").addClass('complete');
+                    finishedPlayers++;
                 }
                 else
                     playerTab.find("div.progress div").removeClass('complete');
             });
+            $('#fplayers').html(finishedPlayers);
         });
     }
     
