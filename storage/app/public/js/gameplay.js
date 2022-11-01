@@ -46,12 +46,9 @@ $(document).ready(function(){
             data.forEach((player) => {
                 let playerTab = $("div.playerprogress[playerId='"+player.id+"']");
                 let divInfo = playerTab.find('.info');
-
                 var taskCompletence = player.complete;
-                // var imagePos = player.complete < 1 ? 1 : player.complete
 
                 divInfo.css('margin-left', "calc(" + (taskCompletence*5 - 2.5) + "% - 50px)");
-
                 playerTab.find("span#name").html(player.name);
                 // render progress bar
                 var milestones = playerTab.find("li");
@@ -62,11 +59,11 @@ $(document).ready(function(){
                     }
                 }
                 if (player.complete == 20) {
-                    playerTab.find("div.progress div").addClass('complete');
+                    // playerTab.find("div.progress div").addClass('complete');
                     finishedPlayers++;
                 }
-                else
-                    playerTab.find("div.progress div").removeClass('complete');
+                // else
+                    // playerTab.find("div.progress div").removeClass('complete');
             });
             $('#fplayers').html(finishedPlayers);
         });
