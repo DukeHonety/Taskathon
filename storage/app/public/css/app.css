@@ -83,7 +83,7 @@ button.slide-right{
     margin-right: 10px;
     font-size: 30px;
     /* color: #7D204F; */
-    opacity: 0.7;
+    opacity: 1;
 }
 .taskItem label{
     line-height: 24px;
@@ -93,12 +93,15 @@ button.slide-right{
     text-decoration: line-through;
     opacity: 0.5;
 }
-.taskItem .icon {
+.taskItem.active i {
+    opacity: 0.5; 
+}
+/* .taskItem .icon {
   opacity: 0.2;
 }
 .taskItem.active .icon {
   opacity: 1;
-}
+} */
 .infoTab{
     display: flex;
     justify-content: space-around;
