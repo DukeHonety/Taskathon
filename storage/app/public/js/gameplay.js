@@ -94,6 +94,7 @@ $(document).ready(function(){
                     currentTask.find("i").removeClass('fa-square');
                     numberComplete.html(parseInt(numberComplete.html())+1);
                     getProgress();
+                    confettiDisp(3000);
                 }
                 else{
                     currentTask.removeClass('active');
@@ -105,7 +106,7 @@ $(document).ready(function(){
                 if(parseInt(numberComplete.html()) == 20){
                     toastr.success("Congratulation! You just finish all tasks");
                     $("#congratLabel").show();
-                    confettiDisp();
+                    confettiDisp(30000);
                 }
                 else
                     $("#congratLabel").hide();
@@ -157,13 +158,13 @@ $(document).ready(function(){
         $(".modal").css({"display":"none"});
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
-    function confettiDisp() {
+    function confettiDisp(delayTime) {
         const cssForCanvasOn = { "display": "block", "position": "fixed", "left": "0", "top": "0", "z-index": "1" };
         const cssForCanvasOff = { "display": "none", "position": "", "left": "", "top": "", "z-index": "" };
 
         $('canvas').css(cssForCanvasOn);
         setTimeout(function() { 
             $('canvas').css(cssForCanvasOff);
-        }, 30000);
+        }, delayTime);
     }
 });
