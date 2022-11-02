@@ -76,8 +76,15 @@ $(document).ready(function(){
         }
         const taskItem = $(this);
         const tastId = taskItem.attr("taskid");
-        let completedTask = parseInt($("span#completed").html());
         let status = $(this).hasClass('active') ? 0 : 1;
+        // Completed task counter definision
+        let completedTask = parseInt($("span#numberComplete").html());
+        if(status === 1) {
+            completedTask = completedTask + 1;
+        } else {
+            completedTask = completedTask - 1;
+        }
+
         const ajax_data = {
             _token: $('input[name="_token"]').val(),
             taskId: tastId,
@@ -94,7 +101,6 @@ $(document).ready(function(){
                     currentTask.find("i").removeClass('fa-square');
                     numberComplete.html(parseInt(numberComplete.html())+1);
                     getProgress();
-                    confettiDisp(3000);
                 }
                 else{
                     currentTask.removeClass('active');
@@ -103,10 +109,13 @@ $(document).ready(function(){
                     numberComplete.html(parseInt(numberComplete.html())-1);
                     getProgress();
                 }
-                if(parseInt(numberComplete.html()) == 20){
+                if( status == 1 && completedTask == 20 ){
                     toastr.success("Congratulation! You just finish all tasks");
                     $("#congratLabel").show();
                     confettiDisp(30000);
+                }
+                else if( status == 1 && completedTask < 20 ) {
+                    confettiDisp(3000);
                 }
                 else
                     $("#congratLabel").hide();
@@ -159,6 +168,7 @@ $(document).ready(function(){
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
     function confettiDisp(delayTime) {
+        console.log('delayTime:',  delayTime);
         const cssForCanvasOn = { "display": "block", "position": "fixed", "left": "0", "top": "0", "z-index": "1" };
         const cssForCanvasOff = { "display": "none", "position": "", "left": "", "top": "", "z-index": "" };
 
