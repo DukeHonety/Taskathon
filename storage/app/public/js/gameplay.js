@@ -164,6 +164,6 @@ $(document).ready(function(){
         $('canvas').css(cssForCanvasOn);
         setTimeout(function() { 
             $('canvas').css(cssForCanvasOff);
-        }, 3000);
+        }, 30000);
     }
 });
