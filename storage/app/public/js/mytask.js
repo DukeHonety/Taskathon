@@ -70,7 +70,7 @@ $(document).ready(function(){
             }
             const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
             if (newFlag){
-                toastr.success("You just created a task!");
+                // toastr.success("You just created a task!");
                 const newElement = $('<div class="col-md-12 col-sm-12 item shadow p-3 mb-2 bg-white rounded text-capitalize modal-trigger" data-modal="taskEditorModal" taskid="' + data['id'] + '">' + data['title'] + '</div>');
                 newElement.bind("click", function(){
                     const taskId = $(this).attr("taskId");
