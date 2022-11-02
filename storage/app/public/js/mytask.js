@@ -2,6 +2,7 @@ let raceTimer;
 $(document).ready(function(){
     $("input#isSharingTask").prop( "checked", $("input#isSharingTask").attr('status') == 1 ? true : false );
     
+    // Task sharing option checking function. 
     $("input#isSharingTask").click( function(){
         let is_share = parseInt($("input#isSharingTask").attr('status'));
         is_share = is_share === 1 ? 0 : 1;
@@ -32,7 +33,13 @@ $(document).ready(function(){
 
     if (parseInt($("span#numberTasks").html()) <= 0)
         $("span#numberTasks").parent().html("Your Tasks");
-    
+    // In case "Enter" key press function
+    $(document).on('keypress',function(e) {
+        if(e.which == 13) {
+            $( "button#taskadd" ).trigger( "click" );
+        }
+    });
+    // In case "Add" button click function
     $("button#taskadd").click(function(){
         $("input#task").focus();
         const tasklimit = $("span#numberTasks").html();
@@ -43,7 +50,7 @@ $(document).ready(function(){
         const newtask = $("input#task").val();
         const taskId = $("input#taskId").val();
         if(newtask == ''){
-            toastr.warning("Input task");
+            toastr.warning("Please fill the input");
             return;
         }
         const ajax_data = {
@@ -54,7 +61,7 @@ $(document).ready(function(){
         // check if new task is duplicated
         let duplicated = false;
         $("div.task_tab .item").each(function(){
-            if ($(this).html() == newtask){
+            if ($(this).html().toLowerCase() === newtask.toLowerCase()){
                 duplicated = true;
             }
         });
