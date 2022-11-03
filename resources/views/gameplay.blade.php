@@ -69,7 +69,7 @@ $roadmaps = 20;
                         ?>
                         <div class="playerprogress" playerId="{{$player['id']}}" completedTasks="{{ $player['complete'] }}">
                             <div class="info">
-                                <img class="player-avatar modal-trigger" data-modal="tasklistModal" src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}" visible="{{$player['share_task']}}" uid="{{$player['user_id']}}"/>
+                                <img class="player-avatar modal-trigger" data-modal="tasklistModal" src="{{asset('storage/avatars/'.$player['character'].'.png')}}" alt="{{$player['complete']}}" uid="{{$player['user_id']}}"/>
                                 <div id="name" style="font-size:15px; width:150px; text-align: center;">{{$player['name']}}</div>
                             </div>
                             <div class="roadmap">

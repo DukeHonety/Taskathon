@@ -135,11 +135,11 @@ $(document).ready(function(){
         if(visible !== 0) {
             $.post('get_tasks_by_user', ajax_data, function(data) {
                 if (data) {
-                    if(data['player_info'][0].share_task != 0) {
-                        $(".modal-body .contents-wrapper").empty();
-                        const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
-                        
-                        data['current_tasks'].forEach((item, key) => {
+                    let step = 0;
+                    $(".modal-body .contents-wrapper").empty();
+                    const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
+                    data['current_tasks'].forEach((item, key) => {
+                        if(item.is_share === 1) {
                             var taskStatus = item.status == 1 ? '<i class="far fa-check-square"></i>' : '<i class="far fa-square"></i>';
                             var completed = item.status == 1 ? 'active' : '';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
@@ -147,10 +147,13 @@ $(document).ready(function(){
                             const task =    '<div class="col-md-6 col-sm-6" style="display: flex"><span  class="task-status">' + taskStatus + '</span>' +
                                             '<div  class="task-on-modal ' + completed + '" style="margin-left: 10px;">' + item.title + '</div></div>';
                             taskModal.append($(task));
-                        });
-                        var modalTitle = data['player_info'][0].name + "'s tasks";
-                        $("#tasklistModal .modal-header h3").html(modalTitle);
-                    }
+                            step++;
+                        }
+                    });
+                    if(step === 0)
+                        taskModal.append('<span style="padding: 30px 20px">There is no shared task</span>');
+                    var modalTitle = data['player_info'][0].name + "'s tasks";
+                    $("#tasklistModal .modal-header h3").html(modalTitle);
                 }
                 else 
                 toastr.warning("Server says: 'You might be a scammer.'");

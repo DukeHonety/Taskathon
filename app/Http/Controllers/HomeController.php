@@ -157,6 +157,7 @@ class HomeController extends Controller
             }
             $newTask->title = $request->task;
             $newTask->user_id = $user->id;
+            $newTask->is_share = $request->is_share;
             $newTask->save();
 
             // update player task number
@@ -230,13 +231,16 @@ class HomeController extends Controller
     }
 
     public function updatetasktitle(Request $request) {
-        $taskId = $request->t_id;
-        $taskTitle = $request->t_title;
+        $taskId     = $request->t_id;
+        $taskTitle  = $request->t_title;
+        $isShare    = $request->is_share;
         $tmodel = Task::find($taskId);
         if(!$tmodel)
             return false;
-        $tmodel->title = $taskTitle;
+        $tmodel->title    = $taskTitle;
+        $tmodel->is_share = $isShare;
         $tmodel->save();
-        return true;
+        
+        return $savedTask = Task::select('*')->where('id', $taskId)->get()->toArray();
     }
 }

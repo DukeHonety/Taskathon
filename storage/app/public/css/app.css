@@ -64,6 +64,14 @@ button.slide-right{
     text-align: left;
     cursor: pointer;
 }
+
+.task_tab .item .dynamic-textarea {
+  width: 100%;
+  min-height: 100px;
+}
+.task_tab .item .textarea-toolbar {
+  padding: 10px 0px;
+}
 .taskItem{
     display: flex;
     /* border-bottom: 2px solid rgba(242, 168, 153, 0.6); */
@@ -96,6 +104,7 @@ button.slide-right{
 .taskItem.active i {
     opacity: 0.5; 
 }
+
 /* .taskItem .icon {
   opacity: 0.2;
 }
@@ -348,7 +357,8 @@ button.slide-right{
 #taskadd {
     position: static;
     margin-left: 20px;
-  }
+}
+
 
 /*------------------------- confetti css -------------------------*/
 .taskItem {
