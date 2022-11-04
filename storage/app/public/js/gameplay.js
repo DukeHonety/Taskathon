@@ -171,7 +171,6 @@ $(document).ready(function(){
         $("body").css({"overflow-y": "auto"}); //Prevent double scrollbar.
     });
     function confettiDisp(delayTime) {
-        console.log('delayTime:',  delayTime);
         const cssForCanvasOn = { "display": "block", "position": "fixed", "left": "0", "top": "0", "z-index": "1" };
         const cssForCanvasOff = { "display": "none", "position": "", "left": "", "top": "", "z-index": "" };
 

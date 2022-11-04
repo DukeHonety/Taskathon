@@ -193,7 +193,6 @@ $(document).ready(function(){
     }
     function hanleTaskUpdate(taskItem) {
         isShare = parseInt(taskItem.attr("is-share")) === 1 ? true : false;
-        console.log(isShare);
         let eyeClass = '';
         let eyeIcon = isShare ? '<i id="eye" class="far fa-eye float-right"></i>' 
                               : '<i id="eye" class="far fa-eye-slash float-right"></i>';
@@ -225,11 +224,9 @@ $(document).ready(function(){
                     t_title  :modifiedTask,
                     is_share :isShare ? 1 : 0
                 }
-                console.log(ajax_data);
                 if(modifiedTask !== '') {
                     $.post('update_task_title', ajax_data, function(data){
                         if(data) {
-                            console.log(data[0].is_share);
                             eyeClass = data[0].is_share === 1 ? 'fa-eye' : 'fa-eye-slash';
                             taskItem.find('textarea').remove();
                             taskItem.find('div.textarea-toolbar').remove();
