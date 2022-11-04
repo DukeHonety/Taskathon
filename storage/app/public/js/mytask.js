@@ -195,7 +195,7 @@ $(document).ready(function(){
         const taskId = taskItem.attr('taskId');
         const valueOfTaskItem = taskItem.find('span').text();
         const textarea = '<textarea class="dynamic-textarea text-capitalize" maxlength="80">'+ valueOfTaskItem +'</textarea>';
-        const saveButton = '<button id="btn-dynamic-update" class="btn btn-primary">save</button>';
+        const saveButton = '<button id="btn-dynamic-update" class="btn btn-primary">Save</button>';
         
         if(isFirstClick) {
             isFirstClick = false;
