@@ -1,5 +1,5 @@
 let raceTimer;
-let isShare = true;
+var isShare = 1;
 $(document).ready(function(){
 
     // $("input#isSharingTask").prop( "checked", $("input#isSharingTask").attr('status') == 1 ? true : false );
@@ -58,7 +58,7 @@ $(document).ready(function(){
             _token: $('input[name="_token"]').val(),
             taskId: taskId,
             task: newtask,
-            is_share: isShare ? 1 : 0
+            is_share: isShare
         };
         // check if new task is duplicated
         let duplicated = false;
@@ -192,10 +192,10 @@ $(document).ready(function(){
         //-- Reserve choosen task item                
     }
     function hanleTaskUpdate(taskItem) {
-        isShare = parseInt(taskItem.attr("is-share")) === 1 ? true : false;
+        isShare = parseInt(taskItem.attr("is-share"));
         let eyeClass = '';
-        let eyeIcon = isShare ? '<i id="eye" class="far fa-eye float-right"></i>' 
-                              : '<i id="eye" class="far fa-eye-slash float-right"></i>';
+        let eyeIcon = isShare == 1 ? '<i id="eye" class="far fa-eye float-right"></i>' 
+                                   : '<i id="eye" class="far fa-eye-slash float-right"></i>';
         const dataModal = taskItem.attr("data-modal");
         const taskId = taskItem.attr('taskId');
         const valueOfTaskItem = taskItem.find('span').text();
@@ -222,7 +222,7 @@ $(document).ready(function(){
                     _token: $('input[name="_token"]').val(),
                     t_id     :taskId,
                     t_title  :modifiedTask,
-                    is_share :isShare ? 1 : 0
+                    is_share :isShare
                 }
                 if(modifiedTask !== '') {
                     $.post('update_task_title', ajax_data, function(data){
@@ -249,8 +249,9 @@ $(document).ready(function(){
                 }
             });
             taskItem.find('i#eye').bind("click", function() {
-                isShare ? taskItem.attr('is-share', '0') : taskItem.attr('is-share', '1');
-                eyeClass = isShare ? 'fa-eye-slash' : 'fa-eye';
+                isShare == 1 ? taskItem.attr('is-share', '0') : taskItem.attr('is-share', '1');
+                isShare = isShare == 1 ? 0 : 1;
+                eyeClass = isShare == 0 ? 'fa-eye-slash' : 'fa-eye';
                 taskItem.find('i#eye').removeClass('far-eye');
                 taskItem.find('i#eye').removeClass('fa-eye-slash');
                 taskItem.find('i#eye').addClass(eyeClass);
