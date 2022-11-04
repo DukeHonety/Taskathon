@@ -22,7 +22,6 @@
                     <h1 id="inputLabel" class="<?php echo count($tasks) == 20 ? 'hidden' : ''; ?>">Enter 20 tasks to complete</h1>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="hidden" class="form-control" name="taskId" id="taskId" value=""/>
                     <input type="text" class="form-control text-24" name="task" id="task" placeholder="Input task here" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus maxlength="80" style="text-transform:capitalize;" />
                     <div class="input-group-append">
                         <button type="button" id="taskadd" class="btn btn-outline-secondary text-24">Add</button>

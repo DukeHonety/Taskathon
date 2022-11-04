@@ -43,21 +43,19 @@ $(document).ready(function(){
     // In case "Add" button click function
     $("button#taskadd").click(function(){
         if (updating) return;
-        $("input#task").focus();
         const tasklimit = $("span#numberTasks").html();
-        if (isNaN(tasklimit) && $("input#taskId").val() == '') {
+        if (isNaN(tasklimit)) {
             toastr.info("You already have 20 tasks. To add more, edit your tasks below");
             return;
         }
         const newtask = $("input#task").val();
-        const taskId = $("input#taskId").val();
-        if(newtask == ''){
+        if(newtask === ''){
             toastr.warning("Please fill the input");
             return;
         }
         const ajax_data = {
             _token: $('input[name="_token"]').val(),
-            taskId: taskId,
+            taskId: '',
             task: newtask,
             is_share: isShare
         };
@@ -79,38 +77,32 @@ $(document).ready(function(){
                 toastr.warning(data.message);
                 return;
             }
-            const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
-            if (newFlag){
-                // toastr.success("You just created a task!");
-                const newElement = $('<div class="col-md-12 col-sm-12 item d-flex flex-row justify-content-between shadow p-3 mb-2 bg-white rounded text-capitalize " taskid="' + data['id'] + '" is-share="'+ data['is_share'] +'" >' 
-                                    + '<span>' + data['title'] + '</span>' +
-                                     '</div>');
-                newElement.append('<i id="state-eye" class="far fa-eye float-right"></i>');
-                newElement.bind("click", function(){
-                    // const taskId = $(this).attr("taskId");
-                    // const dataModal = $(this).attr("data-modal");
-                    // updateModalDisplyer(dataModal, taskId, data['title']);
-                    taskItem = $(this);
-                    hanleTaskUpdate(taskItem);
-                });
-                $("div.task_tab").append(newElement);
-                $("span#numberTasks").html(parseInt($("span#numberTasks").html())-1);
-                if (parseInt($("span#numberTasks").html()) <= 0)
-                    $("span#numberTasks").parent().html("Your Tasks");
-            }
-            else {
-                toastr.success("You just update a task!");
-                $("div[taskid='"+data['id']+"']").html(data['title']);
-            }
+            // const newFlag = $("div[taskid='"+data['id']+"']").html() == undefined;
+            const newElement = $('<div class="col-md-12 col-sm-12 item d-flex flex-row justify-content-between shadow p-3 mb-2 bg-white rounded text-capitalize " taskid="' + data['id'] + '" is-share="'+ data['is_share'] +'" >' 
+                                + '<span>' + data['title'] + '</span>' +
+                                    '</div>');
+            newElement.append('<i id="state-eye" class="far fa-eye float-right"></i>');
+            newElement.bind("click", function(){
+                // const taskId = $(this).attr("taskId");
+                // const dataModal = $(this).attr("data-modal");
+                // updateModalDisplyer(dataModal, taskId, data['title']);
+                taskItem = $(this);
+                hanleTaskUpdate(taskItem);
+            });
+            $("div.task_tab").append(newElement);
+            $("span#numberTasks").html(parseInt($("span#numberTasks").html())-1);
+            if (parseInt($("span#numberTasks").html()) <= 0)
+                $("span#numberTasks").parent().html("Your Tasks");
+
             if (isNaN($("span#numberTasks").html())){
                 $("#inputLabel").addClass('hidden');
                 $("#goRaceLabel").removeClass('hidden');
                 $("#confirmIsSharing").removeClass('hidden');
             }
-            $("input#taskId").val('');
             $("input#task").val('');
-            $("button#taskadd").html("Add");
+            $("input#task").focus();
             updating = false;
+
         });
     });
     raceTimer = setInterval(function() {
