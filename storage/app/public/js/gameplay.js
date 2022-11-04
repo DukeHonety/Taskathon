@@ -74,6 +74,8 @@ $(document).ready(function(){
             toastr.warning("You can check out tasks when the race is playing");
             return;
         }
+        if (updating) return;
+        updating = true;
         const taskItem = $(this);
         const tastId = taskItem.attr("taskid");
         let status = $(this).hasClass('active') ? 0 : 1;
@@ -121,6 +123,7 @@ $(document).ready(function(){
                     $("#congratLabel").hide();
 
             }
+            updating = false;
         });
         
     });

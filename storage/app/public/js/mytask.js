@@ -42,6 +42,7 @@ $(document).ready(function(){
     });
     // In case "Add" button click function
     $("button#taskadd").click(function(){
+        if (updating) return;
         $("input#task").focus();
         const tasklimit = $("span#numberTasks").html();
         if (isNaN(tasklimit) && $("input#taskId").val() == '') {
@@ -72,6 +73,7 @@ $(document).ready(function(){
             return;
         }
         // update data
+        updating = true;
         $.post("mytask", ajax_data, function(data) {
             if (!data){
                 toastr.warning(data.message);
@@ -108,6 +110,7 @@ $(document).ready(function(){
             $("input#taskId").val('');
             $("input#task").val('');
             $("button#taskadd").html("Add");
+            updating = false;
         });
     });
     raceTimer = setInterval(function() {

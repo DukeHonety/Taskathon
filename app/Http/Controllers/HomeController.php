@@ -145,6 +145,9 @@ class HomeController extends Controller
             if (isset($request->taskId)) {
                 $newTask = Task::find($request->taskId);
             } else {
+                $totalTask = Task::where('user_id', $user->id)->count();
+                if($totalTask >= 20)
+                    return false;
                 $newTask = Task::select('*')
                     ->where('user_id', $user->id)
                     ->where('title', $request->task)
