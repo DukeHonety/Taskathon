@@ -7,9 +7,9 @@
 .avatarSlideItem.active{
     border:10px solid greenyellow;
 }
-.avatarSlideItem:hover{
-    /* border: 1px solid grey; */
-}
+/* .avatarSlideItem:hover{
+    border: 1px solid grey;
+} */
 .avatarSlider{
     height:120px;
     margin:20px;
@@ -624,3 +624,26 @@ button.slide-right{
 .playerprogress .wrapper {
   font-size: 16px;
 }
+@media only screen and (max-width: 990px) {
+  div.gameprogress {
+    padding:20px 20px;
+  }
+  .playerprogress .ProgressBar-icon {
+    width:0.5rem;
+    height:0.5rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  nav {
+    position: absolute !important;
+    width: 100%;
+  }
+  div.gameprogress {
+    padding:20px 20px;
+  }
+  .playerprogress .ProgressBar-icon {
+    width:0.2rem;
+    height:0.2rem;
+  }
+}
+

@@ -12,6 +12,9 @@ $(document).ready(function(){
             $(this).html('<i class="fa fa-plus"></i>');
         }
     });
+    $('button.navbar-toggler').click(function() {
+        $('div#navbarSupportedContent').slideToggle();
+    });
 });
 
 function getTimeStr(betweenTime){
