@@ -139,7 +139,7 @@ $(document).ready(function(){
                     $(".modal-body .contents-wrapper").empty();
                     const taskModal = $("#tasklistModal .modal-body .contents-wrapper");
                     data['current_tasks'].forEach((item, key) => {
-                        if(item.is_share === 1) {
+                        if(parseInt(item.is_share) === 1) {
                             var taskStatus = item.status == 1 ? '<i class="far fa-check-square"></i>' : '<i class="far fa-square"></i>';
                             var completed = item.status == 1 ? 'active' : '';
                             // const task = '<h4 class="task-on-modal" tid="'+item.id+'"><span class="line-num"> '+ lineNo +' </span>' + item.title + '<span class="task-status">' + taskStatus + '</span></h4>';
