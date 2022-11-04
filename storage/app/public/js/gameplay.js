@@ -116,9 +116,9 @@ $(document).ready(function(){
                     $("#congratLabel").show();
                     confettiDisp(30000);
                 }
-                else if( status == 1 && completedTask < 20 ) {
-                    confettiDisp(3000);
-                }
+                // else if( status == 1 && completedTask < 20 ) {
+                //     confettiDisp(3000);
+                // }
                 else
                     $("#congratLabel").hide();
 
