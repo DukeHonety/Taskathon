@@ -227,7 +227,7 @@ $(document).ready(function(){
                 if(modifiedTask !== '') {
                     $.post('update_task_title', ajax_data, function(data){
                         if(data) {
-                            eyeClass = data[0].is_share === 1 ? 'fa-eye' : 'fa-eye-slash';
+                            eyeClass = parseInt(data[0].is_share) === 1 ? 'fa-eye' : 'fa-eye-slash';
                             taskItem.find('textarea').remove();
                             taskItem.find('div.textarea-toolbar').remove();
                             taskItem.find('i#state-eye')
