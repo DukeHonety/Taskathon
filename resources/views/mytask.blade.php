@@ -18,12 +18,6 @@
             <div>
                 {{ csrf_field() }}
                 <div class="form-group my-30">
-                    <!-- <div id="confirmIsSharing" class="d-flex justify-content-center form-check <?php echo count($tasks) == 20 ? '' : 'hidden'; ?>">
-                        <input class="form-check-input" type="checkbox" value="" id="isSharingTask" pid="{{$playerInfo['id']}}" status="{{$playerInfo['share_task']}}">
-                        <label class="form-check-label" for="isSharingTask">
-                            Do you agree to share your assignment with others?
-                        </label>
-                    </div> -->
                     <a href="{{route('race')}}" id="goRaceLabel" class="btn btn-primary text-24 <?php echo count($tasks) == 20 ? '' : 'hidden'; ?>"><i class="fa fa-running"></i> Enter the Race</a>
                     <h1 id="inputLabel" class="<?php echo count($tasks) == 20 ? 'hidden' : ''; ?>">Enter 20 tasks to complete</h1>
                 </div>
@@ -39,7 +33,7 @@
                 <h1>Your Tasks @if(count($tasks) < 20) (Add <span id="numberTasks">{{20-count($tasks)}}</span> More)@endif</h1>
                 <div class="task_tab container row d-flex">
                     @foreach ($tasks as $key => $task)
-                        <div class="col-md-12 col-sm-12 d-flex flex-row justify-content-between item shadow p-3 mb-2 bg-white rounded text-capitalize" data-modal="taskEditorModal" taskId="{{$task['id']}}" is-share="{{$task['is_share']}}">
+                        <div class="col-md-12 col-sm-12 d-flex flex-row justify-content-between word-break item shadow p-3 mb-2 bg-white rounded text-capitalize" data-modal="taskEditorModal" taskId="{{$task['id']}}" is-share="{{$task['is_share']}}">
                             <span>{{$task['title']}}</span>
                             <?php echo $task['is_share'] == 1 ? 
                                 '<i id="state-eye" class="far fa-eye float-right"></i>' 

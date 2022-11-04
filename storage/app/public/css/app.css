@@ -1,3 +1,7 @@
+.word-break {
+    word-break: break-all;
+    word-break: break-word;
+}
 /*------------- Avatar -------------*/
 .avatarSlideItem{
     width: 200px;
@@ -63,6 +67,7 @@ button.slide-right{
     margin:10px 0px;
     text-align: left;
     cursor: pointer;
+    
 }
 
 .task_tab .item .dynamic-textarea {
@@ -94,8 +99,8 @@ button.slide-right{
     opacity: 1;
 }
 .taskItem label{
+  padding: 0px 10px; 
     line-height: 24px;
-    margin-left: 10px;
 }
 .taskItem.active label{
     text-decoration: line-through;
@@ -136,6 +141,7 @@ button.slide-right{
   align-items: center;
   cursor:pointer;
   position: absolute;
+  margin-top: 18px; 
   z-index: 10;
 }
 .playerprogress .roadmap {
@@ -255,10 +261,11 @@ button.slide-right{
     width: 70px;
 }
 #modal-wrapper .modal-body .task-on-modal {
-    width: 80%;
+  padding: 0px 10px;
 }
 #modal-wrapper .modal-body .task-on-modal.active {
   text-decoration: line-through;
+  padding: 0px 10px;
 }
 #modal-input {
   width: 100%;

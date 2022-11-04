@@ -199,7 +199,7 @@ $(document).ready(function(){
         const dataModal = taskItem.attr("data-modal");
         const taskId = taskItem.attr('taskId');
         const valueOfTaskItem = taskItem.find('span').text();
-        const textarea = '<textarea class="dynamic-textarea text-capitalize">'+ valueOfTaskItem +'</textarea>';
+        const textarea = '<textarea class="dynamic-textarea text-capitalize" maxlength="80">'+ valueOfTaskItem +'</textarea>';
         const saveButton = '<button id="btn-dynamic-update" class="btn btn-primary">save</button>';
         
         if(isFirstClick) {
